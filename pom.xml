@@ -21,8 +21,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<module>robocode.sound</module>
 		<module>robocode.samples</module>
 		<module>robocode.roborumble</module>
-		<module>robocode.tests.robots</module>
-		<module>robocode.tests</module>
 		<module>robocode.installer</module>
 		<module>robocode.repository</module>
 		<module>robocode.content</module>
