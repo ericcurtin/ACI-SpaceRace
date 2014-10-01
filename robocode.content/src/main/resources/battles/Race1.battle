@@ -1,0 +1,10 @@
+#Battle Properties
+#Sun Dec 15 22:37:41 GMT 2013
+robocode.battle.numRounds=1
+robocode.battle.initialPositions=(400,100,90),(400,500,90),(800,400,0),(1200,30,90),(1200,570,90),(1200,200,90),(1200,400,90),(1600,0,90),(1950,570,0),(1950,30,0),(20,100,90),(20,500,90)
+robocode.battle.gunCoolingRate=0.1
+robocode.battleField.width=2000
+robocode.battle.selectedRobots=space.asteroid.DummyAsteroid*,space.asteroid.DummyAsteroid*,space.asteroid.LargeAsteroid*,space.asteroid.DummyAsteroid*,space.asteroid.DummyAsteroid*,space.asteroid.CircularAsteroidL*,space.asteroid.CircularAsteroidR*,space.asteroid.LargeAsteroid*,space.asteroid.DummyAsteroid*,space.asteroid.DummyAsteroid*,space.race.samples.Technora5b*,space.race.samples.Technora5a*
+robocode.battle.rules.inactivityTime=1000000
+robocode.battle.hideEnemyNames=false
+robocode.battleField.height=600
