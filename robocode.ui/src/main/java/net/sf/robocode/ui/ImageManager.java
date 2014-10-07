@@ -7,7 +7,6 @@
  *******************************************************************************/
 package net.sf.robocode.ui;
 
-
 import net.sf.robocode.settings.ISettingsManager;
 import net.sf.robocode.ui.gfx.ImageUtil;
 import net.sf.robocode.ui.gfx.RenderImage;
@@ -15,7 +14,6 @@ import net.sf.robocode.ui.gfx.RenderImage;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
-
 
 /**
  * @author Mathew A. Nelson (original)
@@ -46,7 +44,8 @@ public class ImageManager implements IImageManager {
 	}
 
 	public void initialize() {
-		// Note that initialize could be called in order to reset all images (image buffering)
+		// Note that initialize could be called in order to reset all images
+		// (image buffering)
 
 		// Reset image cache
 		groundImages = new Image[5];
@@ -68,7 +67,8 @@ public class ImageManager implements IImageManager {
 
 	public Image getGroundTileImage(int index) {
 		if (groundImages[index] == null) {
-			groundImages[index] = getImage("/net/sf/robocode/ui/images/ground/blue_metal/blue_metal_" + index + ".png");
+			groundImages[index] = getImage("/net/sf/robocode/ui/images/ground/blue_metal/blue_metal_"
+					+ index + ".png");
 		}
 		return groundImages[index];
 	}
@@ -86,7 +86,8 @@ public class ImageManager implements IImageManager {
 				List<RenderImage> frames = new ArrayList<RenderImage>();
 
 				for (numFrame = 1;; numFrame++) {
-					filename = "/net/sf/robocode/ui/images/explosion/explosion" + numExplosion + '-' + numFrame + ".png";
+					filename = "/net/sf/robocode/ui/images/explosion/explosion"
+							+ numExplosion + '-' + numFrame + ".png";
 
 					if (ImageManager.class.getResource(filename) == null) {
 						if (numFrame == 1) {
@@ -105,7 +106,8 @@ public class ImageManager implements IImageManager {
 			explosionRenderImages = new RenderImage[numExplosion][];
 
 			for (int i = numExplosion - 1; i >= 0; i--) {
-				explosionRenderImages[i] = explosions.get(i).toArray(new RenderImage[explosions.size()]);
+				explosionRenderImages[i] = explosions.get(i).toArray(
+						new RenderImage[explosions.size()]);
 			}
 		}
 		return explosionRenderImages[which][frame];
@@ -113,7 +115,8 @@ public class ImageManager implements IImageManager {
 
 	public RenderImage getExplosionDebriseRenderImage() {
 		if (debriseRenderImage == null) {
-			debriseRenderImage = new RenderImage(getImage("/net/sf/robocode/ui/images/ground/explode_debris.png"));
+			debriseRenderImage = new RenderImage(
+					getImage("/net/sf/robocode/ui/images/ground/explode_debris.png"));
 		}
 		return debriseRenderImage;
 	}
@@ -127,10 +130,25 @@ public class ImageManager implements IImageManager {
 		return image;
 	}
 
+	public RenderImage getColoredBodyRenderImagePath(Integer color, String path) {
+		// PABLO
+		// RenderImage img = robotBodyImageCache.get(color);
+
+		RenderImage img = null;
+
+		if (img == null) {
+			bodyImage = getImage(path);
+
+			img = new RenderImage(ImageUtil.createColouredRobotImage(bodyImage,
+					new Color(color, true)));
+			robotBodyImageCache.put(color, img);
+		}
+		return img;
+	}
+
 	/**
-	 * Gets the body image
-	 * Loads from disk if necessary.
-	 *
+	 * Gets the body image Loads from disk if necessary.
+	 * 
 	 * @return the body image
 	 */
 	private Image getBodyImage() {
@@ -141,9 +159,8 @@ public class ImageManager implements IImageManager {
 	}
 
 	/**
-	 * Gets the gun image
-	 * Loads from disk if necessary.
-	 *
+	 * Gets the gun image Loads from disk if necessary.
+	 * 
 	 * @return the gun image
 	 */
 	private Image getGunImage() {
@@ -154,9 +171,8 @@ public class ImageManager implements IImageManager {
 	}
 
 	/**
-	 * Gets the radar image
-	 * Loads from disk if necessary.
-	 *
+	 * Gets the radar image Loads from disk if necessary.
+	 * 
 	 * @return the radar image
 	 */
 	private Image getRadarImage() {
@@ -170,7 +186,8 @@ public class ImageManager implements IImageManager {
 		RenderImage img = robotBodyImageCache.get(color);
 
 		if (img == null) {
-			img = new RenderImage(ImageUtil.createColouredRobotImage(getBodyImage(), new Color(color, true)));
+			img = new RenderImage(ImageUtil.createColouredRobotImage(
+					getBodyImage(), new Color(color, true)));
 			robotBodyImageCache.put(color, img);
 		}
 		return img;
@@ -180,7 +197,8 @@ public class ImageManager implements IImageManager {
 		RenderImage img = robotGunImageCache.get(color);
 
 		if (img == null) {
-			img = new RenderImage(ImageUtil.createColouredRobotImage(getGunImage(), new Color(color, true)));
+			img = new RenderImage(ImageUtil.createColouredRobotImage(
+					getGunImage(), new Color(color, true)));
 			robotGunImageCache.put(color, img);
 		}
 		return img;
@@ -190,7 +208,8 @@ public class ImageManager implements IImageManager {
 		RenderImage img = robotRadarImageCache.get(color);
 
 		if (img == null) {
-			img = new RenderImage(ImageUtil.createColouredRobotImage(getRadarImage(), new Color(color, true)));
+			img = new RenderImage(ImageUtil.createColouredRobotImage(
+					getRadarImage(), new Color(color, true)));
 			robotRadarImageCache.put(color, img);
 		}
 		return img;
@@ -198,23 +217,24 @@ public class ImageManager implements IImageManager {
 
 	/**
 	 * Class used for caching rendered robot parts in various colors.
-	 *
+	 * 
 	 * @author Titus Chen
 	 */
 	@SuppressWarnings("serial")
 	private static class RenderCache<K, V> extends LinkedHashMap<K, V> {
 
-		/* Note about initial capacity:
-		 * To avoid rehashing (inefficient though probably unavoidable), initial
-		 * capacity must be at least 1 greater than the maximum capacity.
-		 * However, initial capacities are set to the smallest power of 2 greater
-		 * than or equal to the passed argument, resulting in 512 with this code.
-		 * I was not aware of this before, but notice: the current implementation
-		 * behaves similarly.  The simple solution would be to set maximum capacity
-		 * to 255, but the problem with doing so is that in a battle of 256 robots
-		 * of different colors, the net result would end up being real-time
-		 * rendering due to the nature of access ordering.  However, 256 robot
-		 * battles are rarely fought.
+		/*
+		 * Note about initial capacity: To avoid rehashing (inefficient though
+		 * probably unavoidable), initial capacity must be at least 1 greater
+		 * than the maximum capacity. However, initial capacities are set to the
+		 * smallest power of 2 greater than or equal to the passed argument,
+		 * resulting in 512 with this code. I was not aware of this before, but
+		 * notice: the current implementation behaves similarly. The simple
+		 * solution would be to set maximum capacity to 255, but the problem
+		 * with doing so is that in a battle of 256 robots of different colors,
+		 * the net result would end up being real-time rendering due to the
+		 * nature of access ordering. However, 256 robot battles are rarely
+		 * fought.
 		 */
 		private static final int INITIAL_CAPACITY = MAX_NUM_COLORS + 1;
 
@@ -222,8 +242,9 @@ public class ImageManager implements IImageManager {
 
 		public RenderCache() {
 
-			/* The "true" parameter needed for access-order:
-			 * when cache fills, the least recently accessed entry is removed
+			/*
+			 * The "true" parameter needed for access-order: when cache fills,
+			 * the least recently accessed entry is removed
 			 */
 			super(INITIAL_CAPACITY, LOAD_FACTOR, true);
 		}
