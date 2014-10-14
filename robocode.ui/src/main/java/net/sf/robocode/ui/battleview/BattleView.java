@@ -407,12 +407,15 @@ public class BattleView extends Canvas {
 		g.setClip(savedClip);
 	}
 
+	//
+	// Scan arcs are only drawn for vans
+	//
 	private void drawScanArcs(Graphics2D g, ITurnSnapshot snapShot) {
 		if (drawScanArcs) {
 			for (IRobotSnapshot robotSnapshot : snapShot.getRobots()) {
 				if (robotSnapshot.getState().isAlive()) {
 					Color gunColor = new Color(robotSnapshot.getGunColor());
-					if (!ColorMovingObject.isAsteroid(gunColor)) {
+					if (!ColorMovingObject.isVan(gunColor)) {
 						drawScanArc(g, robotSnapshot);
 					}
 				}
@@ -452,6 +455,10 @@ public class BattleView extends Canvas {
 
 				RenderImage robotRenderImage = null;
 
+				//
+				// If is one of the (project-specific) known robots then draw
+				// its body
+				//
 				Color gunColor = new Color(robotSnapshot.getGunColor());
 				if (imageManager instanceof ImageManager) {
 
@@ -460,7 +467,9 @@ public class BattleView extends Canvas {
 									robotSnapshot.getBodyColor(),
 									ImageMovingObject.getBodyImage(gunColor));
 				}
-
+				//
+				// Otherwise draw the default body
+				//
 				else {
 					robotRenderImage = imageManager
 							.getColoredBodyRenderImage(robotSnapshot
@@ -473,20 +482,25 @@ public class BattleView extends Canvas {
 				at = AffineTransform.getTranslateInstance(x, y);
 				at.rotate(robotSnapshot.getGunHeading());
 
-				if (!ColorMovingObject.isAsteroid(gunColor)) {
-					RenderImage gunRenderImage = imageManager
-							.getColoredGunRenderImage(robotSnapshot
-									.getBodyColor());
+				//
+				// Gun is not rendered for any robot
+				//
+				/*
+				 * if (!ColorMovingObject.isVan(gunColor)) { RenderImage
+				 * gunRenderImage = imageManager
+				 * .getColoredGunRenderImage(robotSnapshot .getBodyColor());
+				 * 
+				 * gunRenderImage.setTransform(at); gunRenderImage.paint(g); }
+				 */
 
-					gunRenderImage.setTransform(at);
-					gunRenderImage.paint(g);
-				}
-
+				//
+				// Radar is only drawn for vans
+				//
 				if (!robotSnapshot.isDroid()) {
 					at = AffineTransform.getTranslateInstance(x, y);
 					at.rotate(robotSnapshot.getRadarHeading());
 
-					if (!ColorMovingObject.isAsteroid(gunColor)) {
+					if (!ColorMovingObject.isVan(gunColor)) {
 						RenderImage radarRenderImage = imageManager
 								.getColoredRadarRenderImage(robotSnapshot
 										.getRadarColor());

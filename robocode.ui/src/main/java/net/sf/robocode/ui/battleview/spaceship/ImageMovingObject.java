@@ -12,21 +12,21 @@ public class ImageMovingObject {
 
 	private static final String defaultImage = "00";
 
-	private static final String PATH_SPACESHIP1 = "01";
-	private static final String PATH_SPACESHIP2 = "02";
-	private static final String PATH_SPACESHIP3 = "03";
-	private static final String PATH_ASTEROID_SMALL = "04";
-	private static final String PATH_ASTEROID_BIG = "05";
+	private static final String PATH_VAN1 = "01";
+	private static final String PATH_VAN2 = "02";
+	private static final String PATH_STONE = "03";
+	private static final String PATH_ANIMAL = "04";
+	private static final String PATH_TREASURE = "05";
 
 	private static final Map<Color, String> colorsAndImages = createMap();
 
 	private static Map<Color, String> createMap() {
 		Map<Color, String> result = new HashMap<Color, String>();
-		result.put(ColorMovingObject.COLOR_SPACESHIP1, PATH_SPACESHIP1);
-		result.put(ColorMovingObject.COLOR_SPACESHIP2, PATH_SPACESHIP2);
-		result.put(ColorMovingObject.COLOR_SPACESHIP3, PATH_SPACESHIP3);
-		result.put(ColorMovingObject.COLOR_ASTEROID_SMALL, PATH_ASTEROID_SMALL);
-		result.put(ColorMovingObject.COLOR_ASTEROID_BIG, PATH_ASTEROID_BIG);
+		result.put(ColorMovingObject.COLOR_VAN1, PATH_VAN1);
+		result.put(ColorMovingObject.COLOR_VAN2, PATH_VAN2);
+		result.put(ColorMovingObject.COLOR_STONE, PATH_STONE);
+		result.put(ColorMovingObject.COLOR_ANIMAL, PATH_ANIMAL);
+		result.put(ColorMovingObject.COLOR_TREASURE, PATH_TREASURE);
 
 		return Collections.unmodifiableMap(result);
 	}
