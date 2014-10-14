@@ -1,4 +1,4 @@
-package space.spaceship.fuel;
+package foobar.fuel;
 
 /**
  * Ethanol is a fuel.

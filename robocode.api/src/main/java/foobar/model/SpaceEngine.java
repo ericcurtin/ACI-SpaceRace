@@ -1,14 +1,14 @@
-package space.spaceship.model;
+package foobar.model;
 
-import space.spaceship.booster.AbstractBooster;
-import space.spaceship.coolingsystem.AbstractCoolingSystem;
-import space.spaceship.fuel.Coal;
-import space.spaceship.fuel.Ethanol;
-import space.spaceship.fuel.IFuel;
-import space.spaceship.fuel.FuelTank;
-import space.spaceship.fuel.Hydrogen;
-import space.spaceship.fuel.Petrol;
-import space.spaceship.fuel.Wood;
+import foobar.booster.AbstractBooster;
+import foobar.coolingsystem.AbstractCoolingSystem;
+import foobar.fuel.Coal;
+import foobar.fuel.Ethanol;
+import foobar.fuel.FuelTank;
+import foobar.fuel.Hydrogen;
+import foobar.fuel.IFuel;
+import foobar.fuel.Petrol;
+import foobar.fuel.Wood;
 
 /**
  * SpaceEngine consists of many different parts.

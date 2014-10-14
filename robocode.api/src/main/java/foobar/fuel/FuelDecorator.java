@@ -1,4 +1,4 @@
-package space.spaceship.fuel;
+package foobar.fuel;
 
 /**
  * FuelDecorator acts as abstract decorator in decorator pattern.

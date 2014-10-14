@@ -1,4 +1,4 @@
-package space.spaceship.model;
+package foobar.model;
 
 /**
  * A small Russian spaceshuttle.

@@ -1,4 +1,4 @@
-package space.spaceship.model;
+package foobar.model;
 
 /**
  * SpaceEngineFactory creates SpaceEngine instances.

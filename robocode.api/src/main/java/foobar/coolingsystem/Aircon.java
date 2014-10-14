@@ -1,4 +1,4 @@
-package space.spaceship.coolingsystem;
+package foobar.coolingsystem;
 
 /**
  * An Aircon cooling system.

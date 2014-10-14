@@ -4,13 +4,13 @@ import java.awt.Color;
 import java.util.HashSet;
 import java.util.Set;
 
+import foobar.coolingsystem.LiquidHydrogen;
+import foobar.fuel.Coal;
+import foobar.fuel.Hydrogen;
+import foobar.fuel.Petrol;
+import foobar.van.AbstractVan;
 import robocode.HitByBulletEvent;
 import robocode.ScannedRobotEvent;
-import space.spaceship.AbstractSpaceship;
-import space.spaceship.coolingsystem.LiquidHydrogen;
-import space.spaceship.fuel.Coal;
-import space.spaceship.fuel.Hydrogen;
-import space.spaceship.fuel.Petrol;
 
 /**
  * This is an advanced spaceship event example. When Technora5a detects a dummy
@@ -20,7 +20,7 @@ import space.spaceship.fuel.Petrol;
  * 
  * @author Pablo Rodriguez (original)
  */
-public class Technora5a extends AbstractSpaceship {
+public class Technora5a extends AbstractVan {
 	Set<String> scannedAsteroids = new HashSet<String>();
 
 	// Constructor

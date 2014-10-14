@@ -1,11 +1,11 @@
 package space.race.samples;
 
+import foobar.booster.UltraBooster;
+import foobar.fuel.Coal;
+import foobar.fuel.Hydrogen;
+import foobar.fuel.Petrol;
+import foobar.van.AbstractVan;
 import robocode.ScannedRobotEvent;
-import space.spaceship.AbstractSpaceship;
-import space.spaceship.booster.UltraBooster;
-import space.spaceship.fuel.Coal;
-import space.spaceship.fuel.Hydrogen;
-import space.spaceship.fuel.Petrol;
 
 /**
  * This is a spaceship booster example. Technora6c uses only coal (=Technora1a).
@@ -13,7 +13,7 @@ import space.spaceship.fuel.Petrol;
  * 
  * @author Pablo Rodriguez (original)
  */
-public class Technora6c extends AbstractSpaceship {
+public class Technora6c extends AbstractVan {
 
 	// Constructor
 	public Technora6c() {

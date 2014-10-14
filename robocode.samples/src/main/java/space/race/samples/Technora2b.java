@@ -2,13 +2,13 @@ package space.race.samples;
 
 import java.awt.Color;
 
+import foobar.coolingsystem.LiquidHydrogen;
+import foobar.fuel.Coal;
+import foobar.fuel.Hydrogen;
+import foobar.fuel.Petrol;
+import foobar.model.SpaceEngine;
+import foobar.van.AbstractVan;
 import robocode.ScannedRobotEvent;
-import space.spaceship.AbstractSpaceship;
-import space.spaceship.coolingsystem.LiquidHydrogen;
-import space.spaceship.fuel.Coal;
-import space.spaceship.fuel.Hydrogen;
-import space.spaceship.fuel.Petrol;
-import space.spaceship.model.SpaceEngine;
 
 /**
  * This is a spaceship cooling system example. Technora2b uses only fuel and
@@ -16,7 +16,7 @@ import space.spaceship.model.SpaceEngine;
  * 
  * @author Pablo Rodriguez (original)
  */
-public class Technora2b extends AbstractSpaceship {
+public class Technora2b extends AbstractVan {
 
 	// Constructor
 	public Technora2b() {

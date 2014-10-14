@@ -1,4 +1,4 @@
-package space.spaceship.booster;
+package foobar.booster;
 
 /**
  * SuperBooster is a booster.

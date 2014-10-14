@@ -1,15 +1,15 @@
-package space.spaceship;
+package foobar.van;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import foobar.booster.AbstractBooster;
+import foobar.coolingsystem.AbstractCoolingSystem;
+import foobar.model.SpaceEngine;
+import foobar.model.SpaceEngineFactory;
 import robocode.Bullet;
 import robocode.Robot;
 import robocode.ScannedRobotEvent;
-import space.spaceship.booster.AbstractBooster;
-import space.spaceship.coolingsystem.AbstractCoolingSystem;
-import space.spaceship.model.SpaceEngine;
-import space.spaceship.model.SpaceEngineFactory;
 
 /**
  * The is the spaceship base class that ACI FooBar challenge competitors should
@@ -19,14 +19,14 @@ import space.spaceship.model.SpaceEngineFactory;
  * @author Pablo Rodriguez (contributor)
  * @author Alan O'Dea (contributor)
  */
-public abstract class AbstractSpaceship extends Robot {
+public abstract class AbstractVan extends Robot {
 	private SpaceEngine spaceEngine;
 	private Color color;
 	private static final String warning = "The ACI Foobar hacking"
 			+ " challenge is over, please code ethically";
 	private boolean isFuelFilled;
 
-	protected AbstractSpaceship() {
+	protected AbstractVan() {
 		isFuelFilled = false;
 	}
 

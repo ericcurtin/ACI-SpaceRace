@@ -1,11 +1,11 @@
 package space.race.samples;
 
+import foobar.coolingsystem.LiquidHydrogen;
+import foobar.fuel.Coal;
+import foobar.fuel.Hydrogen;
+import foobar.fuel.Petrol;
+import foobar.van.AbstractVan;
 import robocode.ScannedRobotEvent;
-import space.spaceship.AbstractSpaceship;
-import space.spaceship.coolingsystem.LiquidHydrogen;
-import space.spaceship.fuel.Coal;
-import space.spaceship.fuel.Hydrogen;
-import space.spaceship.fuel.Petrol;
 
 /**
  * This is a spaceship scanning example. Technora3d uses only coal
@@ -13,7 +13,7 @@ import space.spaceship.fuel.Petrol;
  * 
  * @author Pablo Rodriguez (original)
  */
-public class Technora3d extends AbstractSpaceship {
+public class Technora3d extends AbstractVan {
 
 	// Constructor
 	public Technora3d() {

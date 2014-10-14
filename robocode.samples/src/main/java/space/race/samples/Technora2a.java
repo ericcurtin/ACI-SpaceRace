@@ -1,11 +1,11 @@
 package space.race.samples;
 
+import foobar.coolingsystem.Fan;
+import foobar.fuel.Coal;
+import foobar.fuel.Hydrogen;
+import foobar.fuel.Petrol;
+import foobar.van.AbstractVan;
 import robocode.ScannedRobotEvent;
-import space.spaceship.AbstractSpaceship;
-import space.spaceship.coolingsystem.Fan;
-import space.spaceship.fuel.Coal;
-import space.spaceship.fuel.Hydrogen;
-import space.spaceship.fuel.Petrol;
 
 /**
  * This is a spaceship cooling system example. Technora2a uses only coal and a
@@ -13,7 +13,7 @@ import space.spaceship.fuel.Petrol;
  * 
  * @author Pablo Rodriguez (original)
  */
-public class Technora2a extends AbstractSpaceship {
+public class Technora2a extends AbstractVan {
 
 	// Constructor
 	public Technora2a() {

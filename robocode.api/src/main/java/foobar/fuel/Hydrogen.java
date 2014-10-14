@@ -1,4 +1,4 @@
-package space.spaceship.fuel;
+package foobar.fuel;
 
 /**
  * Hydrogen is a fuel.

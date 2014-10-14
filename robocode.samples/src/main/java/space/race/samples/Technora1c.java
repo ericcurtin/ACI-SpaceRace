@@ -1,10 +1,10 @@
 package space.race.samples;
 
+import foobar.fuel.Coal;
+import foobar.fuel.Hydrogen;
+import foobar.fuel.Petrol;
+import foobar.van.AbstractVan;
 import robocode.ScannedRobotEvent;
-import space.spaceship.AbstractSpaceship;
-import space.spaceship.fuel.Coal;
-import space.spaceship.fuel.Hydrogen;
-import space.spaceship.fuel.Petrol;
 
 /**
  * This is a spaceship fuel using example. Technora1c uses only hydrogen, it has
@@ -12,7 +12,7 @@ import space.spaceship.fuel.Petrol;
  * 
  * @author Pablo Rodriguez (original)
  */
-public class Technora1c extends AbstractSpaceship {
+public class Technora1c extends AbstractVan {
 
 	// Constructor
 	public Technora1c() {

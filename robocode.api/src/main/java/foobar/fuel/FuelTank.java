@@ -1,4 +1,4 @@
-package space.spaceship.fuel;
+package foobar.fuel;
 
 /**
  * FuelTank is an empty fuel tank that the spaceship has to start with.

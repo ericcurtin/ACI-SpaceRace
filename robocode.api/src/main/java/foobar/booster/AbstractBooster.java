@@ -1,4 +1,4 @@
-package space.spaceship.booster;
+package foobar.booster;
 
 /**
  * A booster may be used to give your space engine a speed boost.
