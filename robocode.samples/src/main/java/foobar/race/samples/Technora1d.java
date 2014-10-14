@@ -1,6 +1,7 @@
-package space.race.samples;
+package foobar.race.samples;
 
-import foobar.coolingsystem.Fan;
+import java.awt.Color;
+
 import foobar.fuel.Coal;
 import foobar.fuel.Hydrogen;
 import foobar.fuel.Petrol;
@@ -8,22 +9,21 @@ import foobar.van.AbstractVan;
 import robocode.ScannedRobotEvent;
 
 /**
- * This is a spaceship cooling system example. Technora2a uses only coal and a
- * fan as a cooling system.
+ * This is a spaceship fuel using example. Technora1d uses a mix of fuels.
  * 
  * @author Pablo Rodriguez (original)
  */
-public class Technora2a extends AbstractVan {
+public class Technora1d extends AbstractVan {
 
 	// Constructor
-	public Technora2a() {
+	public Technora1d() {
 		super();
 
 		// Set the type of Spaceship (Atlantis, Buran, Challenger)
 		setAsBuranModel();
 
-		// Set the cooling System
-		setCoolingSystem(new Fan());
+		// Set the colour of the spaceship
+		setColor(Color.GREEN);
 	}
 
 	/**
@@ -31,14 +31,9 @@ public class Technora2a extends AbstractVan {
 	 */
 	@Override
 	public void runACI() {
-
 		// Main loop
 		while (true) {
-
-			// Move forward 30 turns
-			// for (int i = 0; i < 30; i++) {
 			accelerate();
-			// }
 		}
 	}
 
@@ -47,9 +42,9 @@ public class Technora2a extends AbstractVan {
 	 */
 	@Override
 	public void setFuel() {
-		addFuel(Coal.name, 5000);
-		addFuel(Petrol.name, 0);
-		addFuel(Hydrogen.name, 0);
+		addFuel(Coal.name, 3950);
+		addFuel(Petrol.name, 1000);
+		addFuel(Hydrogen.name, 50);
 	}
 
 	@Override

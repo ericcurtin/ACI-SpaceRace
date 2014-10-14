@@ -1,6 +1,4 @@
-package space.race.samples;
-
-import java.awt.Color;
+package foobar.race.samples;
 
 import foobar.fuel.Coal;
 import foobar.fuel.Hydrogen;
@@ -9,21 +7,19 @@ import foobar.van.AbstractVan;
 import robocode.ScannedRobotEvent;
 
 /**
- * This is a spaceship fuel using example. Technora1d uses a mix of fuels.
+ * This is a spaceship fuel using example. Technora1c uses only hydrogen, it has
+ * overheating.
  * 
  * @author Pablo Rodriguez (original)
  */
-public class Technora1d extends AbstractVan {
+public class Technora1c extends AbstractVan {
 
 	// Constructor
-	public Technora1d() {
+	public Technora1c() {
 		super();
 
 		// Set the type of Spaceship (Atlantis, Buran, Challenger)
 		setAsBuranModel();
-
-		// Set the colour of the spaceship
-		setColor(Color.GREEN);
 	}
 
 	/**
@@ -42,9 +38,9 @@ public class Technora1d extends AbstractVan {
 	 */
 	@Override
 	public void setFuel() {
-		addFuel(Coal.name, 3950);
-		addFuel(Petrol.name, 1000);
-		addFuel(Hydrogen.name, 50);
+		addFuel(Coal.name, 0);
+		addFuel(Petrol.name, 0);
+		addFuel(Hydrogen.name, 5000);
 	}
 
 	@Override

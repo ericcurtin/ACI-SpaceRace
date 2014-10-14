@@ -1,4 +1,4 @@
-package space.race.samples;
+package foobar.race.samples;
 
 import foobar.fuel.Coal;
 import foobar.fuel.Hydrogen;

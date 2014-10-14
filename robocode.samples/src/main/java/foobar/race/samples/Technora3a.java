@@ -1,6 +1,8 @@
-package space.race.samples;
+package foobar.race.samples;
 
-import foobar.booster.SuperBooster;
+import java.awt.Color;
+
+import foobar.coolingsystem.LiquidHydrogen;
 import foobar.fuel.Coal;
 import foobar.fuel.Hydrogen;
 import foobar.fuel.Petrol;
@@ -8,22 +10,23 @@ import foobar.van.AbstractVan;
 import robocode.ScannedRobotEvent;
 
 /**
- * This is a spaceship booster example. Technora6b uses only coal (=Technora1a).
- * It uses SuperBooster.
+ * This is a spaceship scanning example. Technora3a uses only coal
+ * (=Technora1a). No scan is done.
  * 
  * @author Pablo Rodriguez (original)
  */
-public class Technora6b extends AbstractVan {
+public class Technora3a extends AbstractVan {
 
 	// Constructor
-	public Technora6b() {
-		super();
-
+	public Technora3a() {
 		// Set the type of Spaceship (Atlantis, Buran, Challenger)
 		setAsBuranModel();
 
-		// Set SuperBooster
-		setBooster(new SuperBooster());
+		// Set the cooling System
+		setCoolingSystem(new LiquidHydrogen());
+
+		// Set the colour of the spaceship
+		setColor(Color.GREEN);
 	}
 
 	/**
@@ -35,9 +38,7 @@ public class Technora6b extends AbstractVan {
 		// Main loop
 		while (true) {
 
-			// Move forward 30 turns
-			// for (int i = 0; i < 30; i++) {
-			System.out.println("Trying to accelerate");
+			// for (int i = 0; i < 100; i++) {
 			accelerate();
 			// }
 		}

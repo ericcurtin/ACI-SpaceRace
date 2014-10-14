@@ -1,4 +1,4 @@
-package space.race.samples;
+package foobar.race.samples;
 
 import java.awt.Color;
 

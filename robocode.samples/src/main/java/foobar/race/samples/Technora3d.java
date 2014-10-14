@@ -1,6 +1,4 @@
-package space.race.samples;
-
-import java.awt.Color;
+package foobar.race.samples;
 
 import foobar.coolingsystem.LiquidHydrogen;
 import foobar.fuel.Coal;
@@ -10,23 +8,22 @@ import foobar.van.AbstractVan;
 import robocode.ScannedRobotEvent;
 
 /**
- * This is a spaceship scanning example. Technora3a uses only coal
- * (=Technora1a). No scan is done.
+ * This is a spaceship scanning example. Technora3d uses only coal
+ * (=Technora1a). It spins the spaceship every 30 turns. Max.degrees/turn = 10.
  * 
  * @author Pablo Rodriguez (original)
  */
-public class Technora3a extends AbstractVan {
+public class Technora3d extends AbstractVan {
 
 	// Constructor
-	public Technora3a() {
+	public Technora3d() {
+		super();
+
 		// Set the type of Spaceship (Atlantis, Buran, Challenger)
 		setAsBuranModel();
 
 		// Set the cooling System
 		setCoolingSystem(new LiquidHydrogen());
-
-		// Set the colour of the spaceship
-		setColor(Color.GREEN);
 	}
 
 	/**
@@ -38,9 +35,13 @@ public class Technora3a extends AbstractVan {
 		// Main loop
 		while (true) {
 
-			// for (int i = 0; i < 100; i++) {
-			accelerate();
-			// }
+			// Move 30 turns
+			for (int i = 0; i < 30; i++) {
+				accelerate();
+			}
+
+			// Spin the Spaceship
+			spinpaceship();
 		}
 	}
 
@@ -52,6 +53,14 @@ public class Technora3a extends AbstractVan {
 		addFuel(Coal.name, 5000);
 		addFuel(Petrol.name, 0);
 		addFuel(Hydrogen.name, 0);
+	}
+
+	/**
+	 * Rotate the spaceship 360 degrees left.
+	 */
+	private void spinpaceship() {
+		// turnRight(360);
+		turnLeft(360);
 	}
 
 	@Override

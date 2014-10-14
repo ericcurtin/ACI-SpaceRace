@@ -1,6 +1,5 @@
-package space.race.samples;
+package foobar.race.samples;
 
-import java.awt.Color;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,30 +8,25 @@ import foobar.fuel.Coal;
 import foobar.fuel.Hydrogen;
 import foobar.fuel.Petrol;
 import foobar.van.AbstractVan;
-import robocode.HitByBulletEvent;
 import robocode.ScannedRobotEvent;
 
 /**
- * This is an advanced spaceship event example. When Technora5a detects a dummy
- * asteroid then it is added to an asteroid list. If an asteroid is close then
- * the spaceship modifies its direction. If the spaceship is being fired then it
- * defends itself.
+ * This is an advanced spaceship event example. When Technora5b detects a dummy
+ * asteroid then it changes its direction to go to the asteroid and fire to it.
  * 
  * @author Pablo Rodriguez (original)
  */
-public class Technora5a extends AbstractVan {
+public class Technora5b extends AbstractVan {
+
 	Set<String> scannedAsteroids = new HashSet<String>();
 
 	// Constructor
-	public Technora5a() {
+	public Technora5b() {
 		// Set the type of Spaceship (Atlantis, Buran, Challenger)
 		setAsBuranModel();
 
-		// Set the Cooling System
+		// Set the cooling System
 		setCoolingSystem(new LiquidHydrogen());
-
-		// Set the colour of the spaceship
-		setColor(Color.GREEN);
 	}
 
 	/**
@@ -40,8 +34,10 @@ public class Technora5a extends AbstractVan {
 	 */
 	@Override
 	public void runACI() {
+
 		// Main loop
 		while (true) {
+
 			// Move forward 30 turns
 			for (int i = 0; i < 30; i++) {
 				accelerate();
@@ -56,44 +52,13 @@ public class Technora5a extends AbstractVan {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void onScannedAsteroid(ScannedRobotEvent e) {
-		// If the asteroid is ahead, add it to the asteroids set
-		if (isAhead(e.getBearing())) {
-			scannedAsteroids.add(e.getName());
-			System.out.println(e.getName() + " added, total ("
-					+ scannedAsteroids.size() + ")");
-			// If the asteroid is back then remove it from the asteroids set
-		} else {
-			scannedAsteroids.remove(e.getName());
-			System.out.println(e.getName() + " removed, total ("
-					+ scannedAsteroids.size() + ")");
+	public void onScannedSpaceship(ScannedRobotEvent e) {
+
+		// Move the spaceship to point the enemy
+		if (!isForward(e.getBearing())) {
+			turnRight(e.getBearing());
 		}
-
-		// If the asteroid is close and forward, then change the direction
-		if (isForward(e.getBearing()) && e.getDistance() < 200) {
-
-			turnRight(90);
-			for (int i = 0; i < 50; i++) {
-				accelerate();
-			}
-
-			turnLeft(90);
-			for (int i = 0; i < 50; i++) {
-				accelerate();
-			}
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void onHitByBullet(HitByBulletEvent e) {
-		double turnGunAmt = (getHeading() + e.getBearing()) - getGunHeading();
-
-		if (turnGunAmt % 360 != 0) {
-			turnGunRight(turnGunAmt);
-		}
+		// shoot!
 		fire(0.15);
 	}
 
@@ -126,10 +91,10 @@ public class Technora5a extends AbstractVan {
 	}
 
 	/**
-	 * Returns if an object is in front, (-10, 10) degrees
+	 * Returns if an object is in front, (-2, -2) degrees
 	 */
 	private boolean isForward(double bearing) {
-		return (bearing > (-10) && bearing < (10));
+		return (bearing > (-2) && bearing < (2));
 	}
 
 	/**
@@ -150,6 +115,7 @@ public class Technora5a extends AbstractVan {
 	}
 
 	@Override
-	public void onScannedSpaceship(ScannedRobotEvent event) {
+	public void onScannedAsteroid(ScannedRobotEvent event) {
 	}
+
 }

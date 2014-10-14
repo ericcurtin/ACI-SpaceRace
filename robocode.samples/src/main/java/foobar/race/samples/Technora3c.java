@@ -1,5 +1,6 @@
-package space.race.samples;
+package foobar.race.samples;
 
+import foobar.coolingsystem.LiquidHydrogen;
 import foobar.fuel.Coal;
 import foobar.fuel.Hydrogen;
 import foobar.fuel.Petrol;
@@ -7,16 +8,22 @@ import foobar.van.AbstractVan;
 import robocode.ScannedRobotEvent;
 
 /**
- * This is a spaceship fuel using example. Technora1a uses only coal.
+ * This is a spaceship scanning example. Technora3c uses only coal
+ * (=Technora1a). It moves the gun every 30 turns. Max.degrees/turn = 20.
  * 
  * @author Pablo Rodriguez (original)
  */
-public class Technora1a extends AbstractVan {
+public class Technora3c extends AbstractVan {
 
 	// Constructor
-	public Technora1a() {
+	public Technora3c() {
+		super();
+
 		// Set the type of Spaceship (Atlantis, Buran, Challenger)
 		setAsBuranModel();
+
+		// Set the cooling System
+		setCoolingSystem(new LiquidHydrogen());
 	}
 
 	/**
@@ -28,10 +35,13 @@ public class Technora1a extends AbstractVan {
 		// Main loop
 		while (true) {
 
-			// Move forward 30 turns
-			// for (int i = 0; i < 30; i++) {
-			accelerate();
-			// }
+			// Move 30 turns
+			for (int i = 0; i < 30; i++) {
+				accelerate();
+			}
+
+			// Spin the Gun
+			moveGun();
 		}
 	}
 
@@ -43,6 +53,14 @@ public class Technora1a extends AbstractVan {
 		addFuel(Coal.name, 5000);
 		addFuel(Petrol.name, 0);
 		addFuel(Hydrogen.name, 0);
+	}
+
+	/**
+	 * Move the gun 360 degrees left.
+	 */
+	private void moveGun() {
+		// turnGunRight(360);
+		turnGunLeft(360);
 	}
 
 	@Override

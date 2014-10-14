@@ -1,4 +1,4 @@
-package space.race.samples;
+package foobar.race.samples;
 
 import foobar.fuel.Coal;
 import foobar.fuel.Hydrogen;
@@ -7,18 +7,14 @@ import foobar.van.AbstractVan;
 import robocode.ScannedRobotEvent;
 
 /**
- * This is a spaceship fuel using example. Technora1b uses only fuel, it has
- * overheating.
+ * This is a spaceship fuel using example. Technora1a uses only coal.
  * 
  * @author Pablo Rodriguez (original)
  */
-
-public class Technora1b extends AbstractVan {
+public class Technora1a extends AbstractVan {
 
 	// Constructor
-	public Technora1b() {
-		super();
-
+	public Technora1a() {
 		// Set the type of Spaceship (Atlantis, Buran, Challenger)
 		setAsBuranModel();
 	}
@@ -44,8 +40,8 @@ public class Technora1b extends AbstractVan {
 	 */
 	@Override
 	public void setFuel() {
-		addFuel(Coal.name, 0);
-		addFuel(Petrol.name, 5000);
+		addFuel(Coal.name, 5000);
+		addFuel(Petrol.name, 0);
 		addFuel(Hydrogen.name, 0);
 	}
 
