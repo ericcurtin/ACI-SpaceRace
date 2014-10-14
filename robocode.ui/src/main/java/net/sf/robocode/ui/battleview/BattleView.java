@@ -500,7 +500,7 @@ public class BattleView extends Canvas {
 					at = AffineTransform.getTranslateInstance(x, y);
 					at.rotate(robotSnapshot.getRadarHeading());
 
-					if (!ColorMovingObject.isVan(gunColor)) {
+					if (ColorMovingObject.isVan(gunColor)) {
 						RenderImage radarRenderImage = imageManager
 								.getColoredRadarRenderImage(robotSnapshot
 										.getRadarColor());
