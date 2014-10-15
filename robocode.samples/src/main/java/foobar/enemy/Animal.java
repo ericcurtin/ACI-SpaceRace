@@ -15,6 +15,6 @@ public final class Animal extends Robot {
 
 	@Override
 	public void run() {
-		setGunColor(new Color(0, 0, 3));
+		setGunColor(new Color(0, 0, 4));
 	}
 }
