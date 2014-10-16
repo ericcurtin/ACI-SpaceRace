@@ -25,6 +25,19 @@ public class HappyVan1 extends AbstractVan {
 	@Override
 	public void runACI() {
 
+		//
+		// Hardcode the route so the Van will go to the center ( aprox ) of the
+		// screen so it will hit the Treasure
+		//
+		turnRight(90);
+		for (int i = 0; i < 150; i++) {
+			accelerate();
+		}
+		turnLeft(90);
+		for (int i = 0; i < 150; i++) {
+			accelerate();
+		}
+
 		// Main loop
 		while (true) {
 

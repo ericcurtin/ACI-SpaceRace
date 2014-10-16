@@ -29,9 +29,12 @@ public class HappyVan2 extends AbstractVan {
 		while (true) {
 
 			// Move forward 30 turns
-			// for (int i = 0; i < 30; i++) {
-			accelerate();
-			// }
+			for (int i = 0; i < 30; i++) {
+				accelerate();
+			}
+
+			// Scan for other spaceships / asteroids.
+			moveRadar();
 		}
 	}
 
@@ -55,6 +58,10 @@ public class HappyVan2 extends AbstractVan {
 	public void onScannedSpaceship(ScannedRobotEvent event) {
 		// TODO Auto-generated method stub
 
+	}
+
+	private void moveRadar() {
+		turnRadarRight(360);
 	}
 
 }
