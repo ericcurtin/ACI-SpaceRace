@@ -1,46 +1,41 @@
 package foobar.enemy;
 
-import java.awt.Color;
-
+import foobar.hippy.AbstractHippyRobot;
+import foobar.hippy.HippyName;
 import robocode.HitRobotEvent;
-import robocode.Robot;
 
 /**
  * This is a type of Asteroid that doesn't move.
  * 
  * @author Pablo Rodriguez (original)
  */
-public final class Treasure extends Robot {
+public final class Treasure extends AbstractHippyRobot {
 
-	private boolean hit = false;
-
-	public Treasure() {
-		super();
-	}
-
-	@Override
-	public void run() {
-		setGunColor(new Color(0, 0, 5));
-	}
+	private boolean winner = false;
 
 	@Override
 	public void onHitRobot(HitRobotEvent event) {
 
 		//
-		// Print the winner's name
+		// There is no winner yet and a Van hit the treasure
 		//
-		if (!hit) {
+		if (!winner && HippyName.isVan(event.getName())) {
+			//
+			// Print the winner's name
+			//
 			System.out.println(event.getName() + " wins the race !!!");
-
-			// JOptionPane.showMessageDialog(null, event.getName()
-			// + " wins the race");
+			winner = true;
 
 			//
-			// Turn to notice that a robot hit the Treasure
+			// Spin to know that somebody hit the treasure
 			//
 			turnLeft(360);
 
-			hit = true;
+			//
+			// Can not be used because of the security
+			//
+			// JOptionPane.showMessageDialog(null, event.getName()
+			// + " wins the race");
 		}
 
 	}
