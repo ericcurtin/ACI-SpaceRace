@@ -1,10 +1,11 @@
-package foobar.van;
+package foobar.hippy.van;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 
 import foobar.booster.AbstractBooster;
 import foobar.coolingsystem.AbstractCoolingSystem;
+import foobar.hippy.AbstractHippyRobot;
 import foobar.model.SpaceEngine;
 import foobar.model.SpaceEngineFactory;
 import robocode.Bullet;
@@ -19,7 +20,7 @@ import robocode.ScannedRobotEvent;
  * @author Pablo Rodriguez (contributor)
  * @author Alan O'Dea (contributor)
  */
-public abstract class AbstractVan extends Robot {
+public abstract class AbstractVan extends AbstractHippyRobot {
 	private SpaceEngine spaceEngine;
 	private Color color;
 	private static final String warning = "The ACI Foobar hacking"

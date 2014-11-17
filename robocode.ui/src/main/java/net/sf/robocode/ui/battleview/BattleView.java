@@ -16,7 +16,6 @@ import net.sf.robocode.ui.IImageManager;
 import net.sf.robocode.ui.IWindowManager;
 import net.sf.robocode.ui.IWindowManagerExt;
 import net.sf.robocode.ui.ImageManager;
-import net.sf.robocode.ui.battleview.spaceship.ColorMovingObject;
 import net.sf.robocode.ui.battleview.spaceship.ImageMovingObject;
 import net.sf.robocode.ui.gfx.GraphicsState;
 import net.sf.robocode.ui.gfx.RenderImage;
@@ -36,8 +35,12 @@ import java.awt.event.ComponentEvent;
 import java.awt.geom.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+
 import static java.lang.Math.*;
+
 import java.util.Random;
+
+import foobar.hippy.HippyName;
 
 /**
  * @author Mathew A. Nelson (original)
@@ -414,8 +417,7 @@ public class BattleView extends Canvas {
 		if (drawScanArcs) {
 			for (IRobotSnapshot robotSnapshot : snapShot.getRobots()) {
 				if (robotSnapshot.getState().isAlive()) {
-					Color gunColor = new Color(robotSnapshot.getGunColor());
-					if (!ColorMovingObject.isVan(gunColor)) {
+					if (HippyName.isVan(robotSnapshot.getName())) {
 						drawScanArc(g, robotSnapshot);
 					}
 				}
@@ -459,13 +461,12 @@ public class BattleView extends Canvas {
 				// If is one of the (project-specific) known robots then draw
 				// its body
 				//
-				Color gunColor = new Color(robotSnapshot.getGunColor());
 				if (imageManager instanceof ImageManager) {
 
 					robotRenderImage = ((ImageManager) imageManager)
-							.getColoredBodyRenderImagePath(
-									robotSnapshot.getBodyColor(),
-									ImageMovingObject.getBodyImage(gunColor));
+							.getColoredBodyRenderImagePath(robotSnapshot
+									.getBodyColor(), ImageMovingObject
+									.getBodyImage(robotSnapshot.getName()));
 				}
 				//
 				// Otherwise draw the default body
@@ -500,7 +501,7 @@ public class BattleView extends Canvas {
 					at = AffineTransform.getTranslateInstance(x, y);
 					at.rotate(robotSnapshot.getRadarHeading());
 
-					if (ColorMovingObject.isVan(gunColor)) {
+					if (HippyName.isVan(robotSnapshot.getName())) {
 						RenderImage radarRenderImage = imageManager
 								.getColoredRadarRenderImage(robotSnapshot
 										.getRadarColor());

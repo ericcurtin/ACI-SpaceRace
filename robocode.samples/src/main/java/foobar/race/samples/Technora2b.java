@@ -6,8 +6,8 @@ import foobar.coolingsystem.LiquidHydrogen;
 import foobar.fuel.Coal;
 import foobar.fuel.Hydrogen;
 import foobar.fuel.Petrol;
+import foobar.hippy.van.AbstractVan;
 import foobar.model.SpaceEngine;
-import foobar.van.AbstractVan;
 import robocode.ScannedRobotEvent;
 
 /**

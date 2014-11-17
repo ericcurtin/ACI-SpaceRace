@@ -4,7 +4,7 @@ import foobar.coolingsystem.Fan;
 import foobar.fuel.Coal;
 import foobar.fuel.Hydrogen;
 import foobar.fuel.Petrol;
-import foobar.van.AbstractVan;
+import foobar.hippy.van.AbstractVan;
 import robocode.ScannedRobotEvent;
 
 /**
