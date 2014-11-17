@@ -4,19 +4,19 @@ import robocode.Robot;
 
 abstract public class AbstractHippyRobot extends Robot {
 
-	public boolean isVan(AbstractHippyRobot r) {
+	final protected boolean isVan(AbstractHippyRobot r) {
 		return !isStone(r) && !isAnimal(r) && !isTreasure(r);
 	}
 
-	public boolean isStone(AbstractHippyRobot r) {
+	final protected boolean isStone(AbstractHippyRobot r) {
 		return HippyName.isStone(r.getName());
 	}
 
-	public boolean isAnimal(AbstractHippyRobot r) {
+	final protected boolean isAnimal(AbstractHippyRobot r) {
 		return HippyName.isAnimal(r.getName());
 	}
 
-	public boolean isTreasure(AbstractHippyRobot r) {
+	final protected boolean isTreasure(AbstractHippyRobot r) {
 		return HippyName.isTreasure(r.getName());
 	}
 

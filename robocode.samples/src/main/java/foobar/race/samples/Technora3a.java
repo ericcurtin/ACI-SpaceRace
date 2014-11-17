@@ -19,14 +19,12 @@ public class Technora3a extends AbstractVan {
 
 	// Constructor
 	public Technora3a() {
-		// Set the type of Spaceship (Atlantis, Buran, Challenger)
-		setAsBuranModel();
 
 		// Set the cooling System
 		setCoolingSystem(new LiquidHydrogen());
 
 		// Set the colour of the spaceship
-		setColor(Color.GREEN);
+		setBodyColor(Color.GREEN);
 	}
 
 	/**

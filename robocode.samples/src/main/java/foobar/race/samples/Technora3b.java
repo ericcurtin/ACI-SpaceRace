@@ -19,9 +19,6 @@ public class Technora3b extends AbstractVan {
 	public Technora3b() {
 		super();
 
-		// Set the type of Spaceship (Atlantis, Buran, Challenger)
-		setAsBuranModel();
-
 		// Set the cooling System
 		setCoolingSystem(new LiquidHydrogen());
 	}

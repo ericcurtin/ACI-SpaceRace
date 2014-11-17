@@ -7,9 +7,7 @@ import foobar.booster.AbstractBooster;
 import foobar.coolingsystem.AbstractCoolingSystem;
 import foobar.hippy.AbstractHippyRobot;
 import foobar.model.SpaceEngine;
-import foobar.model.SpaceEngineFactory;
 import robocode.Bullet;
-import robocode.Robot;
 import robocode.ScannedRobotEvent;
 
 /**
@@ -21,8 +19,7 @@ import robocode.ScannedRobotEvent;
  * @author Alan O'Dea (contributor)
  */
 public abstract class AbstractVan extends AbstractHippyRobot {
-	private SpaceEngine spaceEngine;
-	private Color color;
+	private SpaceEngine spaceEngine = new SpaceEngine();
 	private static final String warning = "The ACI Foobar hacking"
 			+ " challenge is over, please code ethically";
 	private boolean isFuelFilled;
@@ -58,21 +55,8 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	@Override
 	@Deprecated
 	public final void run() {
-		// If you delete this line, the spaceship image is not loaded
-		// correctly
-		setColor();
-
-		// Check it does not have an asteroid name
-		getName();
-
-		try {
-			super.setGunColor(new Color(0, 0, spaceEngine.getBodySize()));
-
-		} catch (NullPointerException nullPointerException) {
-			throw new NullPointerException("Please select model using "
-					+ "one of the setAs() methods in the "
-					+ "constructor of your Space Ship.");
-		}
+		// Check if the name is valid
+		checkVanName();
 
 		setFuel();
 		isFuelFilled = true;
@@ -80,55 +64,10 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	}
 
 	/**
-	 * This function sets the color of the spaceship, scanner and bullets.
-	 */
-	public final void setColor(Color color) {
-		this.color = color;
-	}
-
-	/**
-	 * This function sets the color of the spaceship, if no color is selected
-	 * then the default one is used.
-	 */
-	private final void setColor() {
-		if (color == null) {
-			// Use default color
-			color = Color.ORANGE;
-		}
-
-		// Set colors
-		super.setBodyColor(color);
-		super.setBulletColor(color);
-		super.setRadarColor(color);
-		super.setScanColor(color);
-	}
-
-	/**
 	 * The setFuel abstract method. This should be overridden to ensure fuel is
 	 * added at the start of the race.
 	 */
 	protected abstract void setFuel();
-
-	/**
-	 * Run this method if you want to use the Challenger Model.
-	 */
-	protected void setAsChallengerModel() {
-		spaceEngine = SpaceEngineFactory.getChallengerSpaceShip();
-	}
-
-	/**
-	 * Run this method if you want to use the Buran Model.
-	 */
-	protected void setAsBuranModel() {
-		spaceEngine = SpaceEngineFactory.getBuranSpaceShip();
-	}
-
-	/**
-	 * Run this method if you want to use the Atlantis Model.
-	 */
-	protected void setAsAtlantisModel() {
-		spaceEngine = SpaceEngineFactory.getAtlantisSpaceShip();
-	}
 
 	/**
 	 * Use this method to add fuel to your spaceship.
@@ -175,19 +114,19 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 */
 	public abstract void runACI();
 
-	/**
-	 * @return the spaceship's name
-	 */
-	@Override
-	public final String getName() {
-		if (super.getName() != null
-				&& super.getName().toLowerCase().contains("asteroid")) {
-
-			throw new UnsupportedOperationException("You are not an"
-					+ "asteroid, please change your spaceship class name");
+	public final void checkVanName() {
+		if (super.isStone(this)) {
+			throw new UnsupportedOperationException(
+					"You are not a stone, please change your spaceship class name");
 		}
-
-		return super.getName();
+		if (super.isAnimal(this)) {
+			throw new UnsupportedOperationException(
+					"You are not an animal, please change your spaceship class name");
+		}
+		if (super.isTreasure(this)) {
+			throw new UnsupportedOperationException(
+					"You are not a treasure, please change your spaceship class name");
+		}
 	}
 
 	@Override
@@ -691,27 +630,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 
 	@Override
 	@Deprecated
-	public final void setBodyColor(Color color) {
-		throw new UnsupportedOperationException(warning);
-	}
-
-	@Override
-	@Deprecated
 	public final void setBulletColor(Color color) {
-		throw new UnsupportedOperationException(warning);
-	}
-
-	@Override
-	@Deprecated
-	public final void setColors(Color bodyColor, Color gunColor,
-			Color radarColor) {
-		throw new UnsupportedOperationException(warning);
-	}
-
-	@Override
-	@Deprecated
-	public final void setColors(Color bodyColor, Color gunColor,
-			Color radarColor, Color bulletColor, Color scanArcColor) {
 		throw new UnsupportedOperationException(warning);
 	}
 
@@ -724,18 +643,6 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	@Override
 	@Deprecated
 	public final void setGunColor(Color color) {
-		throw new UnsupportedOperationException(warning);
-	}
-
-	@Override
-	@Deprecated
-	public final void setRadarColor(Color color) {
-		throw new UnsupportedOperationException(warning);
-	}
-
-	@Override
-	@Deprecated
-	public final void setScanColor(Color color) {
 		throw new UnsupportedOperationException(warning);
 	}
 

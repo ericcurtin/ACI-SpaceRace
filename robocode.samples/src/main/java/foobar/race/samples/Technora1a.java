@@ -13,12 +13,6 @@ import robocode.ScannedRobotEvent;
  */
 public class Technora1a extends AbstractVan {
 
-	// Constructor
-	public Technora1a() {
-		// Set the type of Spaceship (Atlantis, Buran, Challenger)
-		setAsBuranModel();
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */

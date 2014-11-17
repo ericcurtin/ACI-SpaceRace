@@ -13,12 +13,6 @@ import robocode.ScannedRobotEvent;
  */
 public class HappyVan2 extends AbstractVan {
 
-	// Constructor
-	public HappyVan2() {
-		// Set the type of Spaceship (Atlantis, Buran, Challenger)
-		setAsChallengerModel();
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */

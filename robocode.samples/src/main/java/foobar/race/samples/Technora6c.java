@@ -19,9 +19,6 @@ public class Technora6c extends AbstractVan {
 	public Technora6c() {
 		super();
 
-		// Set the type of Spaceship (Atlantis, Buran, Challenger)
-		setAsBuranModel();
-
 		// Set UltraBooster
 		setBooster(new UltraBooster());
 	}

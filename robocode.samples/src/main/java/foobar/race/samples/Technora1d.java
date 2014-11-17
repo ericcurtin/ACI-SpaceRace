@@ -19,11 +19,9 @@ public class Technora1d extends AbstractVan {
 	public Technora1d() {
 		super();
 
-		// Set the type of Spaceship (Atlantis, Buran, Challenger)
-		setAsBuranModel();
 
 		// Set the colour of the spaceship
-		setColor(Color.GREEN);
+		setBodyColor(Color.GREEN);
 	}
 
 	/**
