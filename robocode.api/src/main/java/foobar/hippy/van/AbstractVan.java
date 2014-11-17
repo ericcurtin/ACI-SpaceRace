@@ -114,6 +114,10 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 */
 	public abstract void runACI();
 
+	/**
+	 * This method checks if the name of the Van is valid. If it contains
+	 * 'stone', 'animal' or 'treasure' then it is not valid.
+	 */
 	public final void checkVanName() {
 		if (super.isStone(this)) {
 			throw new UnsupportedOperationException(
@@ -637,12 +641,6 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	@Override
 	@Deprecated
 	public final void setDebugProperty(String key, String value) {
-		throw new UnsupportedOperationException(warning);
-	}
-
-	@Override
-	@Deprecated
-	public final void setGunColor(Color color) {
 		throw new UnsupportedOperationException(warning);
 	}
 
