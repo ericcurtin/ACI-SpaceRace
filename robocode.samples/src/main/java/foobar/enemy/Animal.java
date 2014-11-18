@@ -54,12 +54,12 @@ public final class Animal extends AbstractHippyRobot {
 			//
 			// Chase
 			//
-			ahead(2.5);
+			ahead(3);
 
 			//
 			// Fire
 			//
-			fire(1.5);
+			fire(2.5);
 		}
 	}
 

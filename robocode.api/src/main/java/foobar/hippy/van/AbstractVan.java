@@ -452,15 +452,6 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
-	/**
-	 * Van can not fire bullets. It can not be hit by any bullet.
-	 */
-	@Override
-	@Deprecated
-	public final void onHitByBullet(HitByBulletEvent event) {
-		throw new UnsupportedOperationException(getRandomWarningMessage());
-	}
-
 	@Override
 	@Deprecated
 	public final void resume() {

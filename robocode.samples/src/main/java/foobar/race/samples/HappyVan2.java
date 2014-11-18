@@ -19,6 +19,19 @@ public class HappyVan2 extends AbstractVan {
 	@Override
 	public void runACI() {
 
+		//
+		// Hardcode the route so the Van will go to the center ( aprox ) of the
+		// screen so it will hit the Treasure
+		//
+		turnLeft(90);
+		for (int i = 0; i < 150; i++) {
+			accelerate();
+		}
+		turnRight(90);
+		for (int i = 0; i < 150; i++) {
+			accelerate();
+		}
+
 		// Main loop
 		while (true) {
 
@@ -37,7 +50,7 @@ public class HappyVan2 extends AbstractVan {
 	 */
 	@Override
 	public void setFuel() {
-		addFuel(Coal.name, 5000);
+		addFuel(Coal.name, 2500);
 		addFuel(Petrol.name, 0);
 		addFuel(Hydrogen.name, 0);
 	}
