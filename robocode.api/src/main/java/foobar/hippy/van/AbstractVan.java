@@ -2,6 +2,9 @@ package foobar.hippy.van;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 import foobar.booster.AbstractBooster;
 import foobar.coolingsystem.AbstractCoolingSystem;
@@ -26,9 +29,21 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 */
 	private Engine spaceEngine = new Engine();
 	private boolean isFuelFilled = false;
-
-	private static final String warning = "The ACI Foobar hacking"
-			+ " challenge is over, please code ethically";
+	private Map<Integer, String> warningMessages = new HashMap<Integer, String>();
+	{
+		warningMessages
+				.put(0,
+						"The ACI Foobar hacking challenge is over, please code ethically");
+		warningMessages
+				.put(1,
+						"Do you think you can win using deprecated methods? Now you know that you can't");
+		warningMessages
+				.put(2,
+						"So I said to the judge: I swear I didn't try to cheat, it's just that I used deprecated methods");
+		warningMessages
+				.put(3,
+						"You are banned from the ACI FooBar Challenge... Well... You're not but next time don't use deprecated methods");
+	}
 
 	protected AbstractVan() {
 
@@ -171,6 +186,16 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	public abstract void onScannedVan(ScannedRobotEvent event);
 
 	/**
+	 * Get a random warning message from the 'warningMessages' class member.
+	 * 
+	 * @return random warning message from the 'warningMessages' class member.
+	 */
+	private String getRandomWarningMessage() {
+		Random r = new Random();
+		return warningMessages.get(r.nextInt(4));
+	}
+
+	/**
 	 * Checks the current temperature of this spaceship.
 	 * 
 	 * @return the temperature of this spaceship
@@ -262,13 +287,13 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	@Override
 	@Deprecated
 	public final void ahead(double distance) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final void back(double distance) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	/**
@@ -277,55 +302,55 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	@Override
 	@Deprecated
 	public final void fire(double power) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final Bullet fireBullet(double power) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final double getBattleFieldHeight() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final double getBattleFieldWidth() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final int getBattleNum() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final double getEnergy() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final Graphics2D getGraphics() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final double getGunCharge() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final double getGunCoolingRate() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	/**
@@ -334,97 +359,97 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	@Override
 	@Deprecated
 	public final double getGunHeading() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final double getGunHeat() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final String getGunImageName() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final double getHeight() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final double getLife() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final int getNumBattles() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final int getNumRounds() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final int getOthers() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final String getRadarImageName() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final String getRobotImageName() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final int getRoundNum() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final long getTime() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final double getVelocity() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final double getWidth() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final double getX() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final double getY() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	/**
@@ -433,49 +458,49 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	@Override
 	@Deprecated
 	public final void onHitByBullet(HitByBulletEvent event) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final void resume() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final void scan() {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final void setAdjustGunForRobotTurn(boolean independent) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final void setAdjustRadarForGunTurn(boolean independent) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final void setAdjustRadarForRobotTurn(boolean independent) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final void setAllColors(Color color) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final void setBulletColor(Color color) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	/**
@@ -485,13 +510,13 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	@Deprecated
 	public final void setColors(Color bodyColor, Color gunColor,
 			Color radarColor) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final void setDebugProperty(String key, String value) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	/**
@@ -500,31 +525,31 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	@Override
 	@Deprecated
 	public final void setGunColor(Color color) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final void setGunImageName(String newGunImageName) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final void setInterruptible(boolean interruptible) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final void setRadarImageName(String newRadarImageName) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	@Override
 	@Deprecated
 	public final void setRobotImageName(String newRobotImageName) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	/**
@@ -532,7 +557,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 */
 	@Override
 	public final void turnGunLeft(double degrees) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 	/**
@@ -540,7 +565,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 */
 	@Override
 	public final void turnGunRight(double degrees) {
-		throw new UnsupportedOperationException(warning);
+		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
 }
