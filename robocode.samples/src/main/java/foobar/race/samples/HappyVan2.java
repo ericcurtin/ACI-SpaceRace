@@ -42,20 +42,32 @@ public class HappyVan2 extends AbstractVan {
 		addFuel(Hydrogen.name, 0);
 	}
 
-	@Override
-	public void onScannedAsteroid(ScannedRobotEvent event) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onScannedSpaceship(ScannedRobotEvent event) {
-		// TODO Auto-generated method stub
-
-	}
-
 	private void moveRadar() {
 		turnRadarRight(360);
+	}
+
+	@Override
+	public void onScannedAnimal(ScannedRobotEvent event) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onScannedStone(ScannedRobotEvent event) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onScannedTreasure(ScannedRobotEvent event) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onScannedVan(ScannedRobotEvent event) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

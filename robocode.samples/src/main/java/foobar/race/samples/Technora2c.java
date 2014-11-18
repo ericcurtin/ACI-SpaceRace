@@ -5,7 +5,7 @@ import foobar.fuel.Coal;
 import foobar.fuel.Hydrogen;
 import foobar.fuel.Petrol;
 import foobar.hippy.van.AbstractVan;
-import foobar.model.SpaceEngine;
+import foobar.model.Engine;
 import robocode.ScannedRobotEvent;
 
 /**
@@ -30,11 +30,11 @@ public class Technora2c extends AbstractVan {
 	@Override
 	public void runACI() {
 		while (true) {
-			if (getTemperature() < SpaceEngine.overheatTemperature) {
+			if (getTemperature() < Engine.OVERHEAT_TEMPERATURE) {
 				accelerate();
 			} else { // OVERHEAT
 				// Stop till 90% of maximum temperature
-				while (getTemperature() > (0.9 * SpaceEngine.overheatTemperature)) {
+				while (getTemperature() > (0.9 * Engine.OVERHEAT_TEMPERATURE)) {
 					System.out.println("Cooling: " + getTemperature());
 					stop();
 				}
@@ -54,15 +54,27 @@ public class Technora2c extends AbstractVan {
 	}
 
 	@Override
-	public void onScannedAsteroid(ScannedRobotEvent event) {
+	public void onScannedAnimal(ScannedRobotEvent event) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void onScannedSpaceship(ScannedRobotEvent event) {
+	public void onScannedStone(ScannedRobotEvent event) {
 		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void onScannedTreasure(ScannedRobotEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onScannedVan(ScannedRobotEvent event) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

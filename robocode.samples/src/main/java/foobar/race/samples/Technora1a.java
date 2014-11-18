@@ -40,13 +40,25 @@ public class Technora1a extends AbstractVan {
 	}
 
 	@Override
-	public void onScannedAsteroid(ScannedRobotEvent event) {
+	public void onScannedAnimal(ScannedRobotEvent event) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void onScannedSpaceship(ScannedRobotEvent event) {
+	public void onScannedStone(ScannedRobotEvent event) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onScannedTreasure(ScannedRobotEvent event) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onScannedVan(ScannedRobotEvent event) {
 		// TODO Auto-generated method stub
 
 	}

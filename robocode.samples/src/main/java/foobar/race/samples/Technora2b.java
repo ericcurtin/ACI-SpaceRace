@@ -7,7 +7,7 @@ import foobar.fuel.Coal;
 import foobar.fuel.Hydrogen;
 import foobar.fuel.Petrol;
 import foobar.hippy.van.AbstractVan;
-import foobar.model.SpaceEngine;
+import foobar.model.Engine;
 import robocode.ScannedRobotEvent;
 
 /**
@@ -38,7 +38,7 @@ public class Technora2b extends AbstractVan {
 		// Main loop
 		while (true) {
 
-			if (getTemperature() < SpaceEngine.overheatTemperature) {
+			if (getTemperature() < Engine.OVERHEAT_TEMPERATURE) {
 				accelerate();
 			} else { // OVERHEAT
 				// Stop 10 turns to cool the system
@@ -63,15 +63,27 @@ public class Technora2b extends AbstractVan {
 	}
 
 	@Override
-	public void onScannedAsteroid(ScannedRobotEvent event) {
+	public void onScannedAnimal(ScannedRobotEvent event) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void onScannedSpaceship(ScannedRobotEvent event) {
+	public void onScannedStone(ScannedRobotEvent event) {
 		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void onScannedTreasure(ScannedRobotEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onScannedVan(ScannedRobotEvent event) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

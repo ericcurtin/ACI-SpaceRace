@@ -45,10 +45,7 @@ public class Technora4a extends AbstractVan {
 			moveRadar();
 		}
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
+/*
 	@Override
 	public void onScannedAsteroid(ScannedRobotEvent e) {
 
@@ -77,7 +74,7 @@ public class Technora4a extends AbstractVan {
 			System.out.println("Large Asteroid Detected");
 		}
 	}
-
+*/
 	/**
 	 * Detects if the deviation of an angle is low.
 	 */
@@ -103,9 +100,28 @@ public class Technora4a extends AbstractVan {
 	}
 
 	@Override
-	public void onScannedSpaceship(ScannedRobotEvent event) {
+	public void onScannedAnimal(ScannedRobotEvent event) {
 		// TODO Auto-generated method stub
-
+		
 	}
+
+	@Override
+	public void onScannedStone(ScannedRobotEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onScannedTreasure(ScannedRobotEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onScannedVan(ScannedRobotEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

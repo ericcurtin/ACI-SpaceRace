@@ -50,9 +50,7 @@ public class Technora5a extends AbstractVan {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+/*
 	@Override
 	public void onScannedAsteroid(ScannedRobotEvent e) {
 		// If the asteroid is ahead, add it to the asteroids set
@@ -82,9 +80,6 @@ public class Technora5a extends AbstractVan {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void onHitByBullet(HitByBulletEvent e) {
 		double turnGunAmt = (getHeading() + e.getBearing()) - getGunHeading();
@@ -94,7 +89,7 @@ public class Technora5a extends AbstractVan {
 		}
 		fire(0.15);
 	}
-
+*/
 	/**
 	 * Returns if an object is ahead
 	 */
@@ -148,6 +143,27 @@ public class Technora5a extends AbstractVan {
 	}
 
 	@Override
-	public void onScannedSpaceship(ScannedRobotEvent event) {
+	public void onScannedAnimal(ScannedRobotEvent event) {
+		// TODO Auto-generated method stub
+		
 	}
+
+	@Override
+	public void onScannedStone(ScannedRobotEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onScannedTreasure(ScannedRobotEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onScannedVan(ScannedRobotEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
