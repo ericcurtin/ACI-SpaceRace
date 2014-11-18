@@ -4,20 +4,33 @@ import robocode.Robot;
 
 abstract public class AbstractHippyRobot extends Robot {
 
-	final protected boolean isVan(AbstractHippyRobot r) {
-		return !isStone(r) && !isAnimal(r) && !isTreasure(r);
+	private static final String STONE = "Stone";
+	private static final String ANIMAL = "Animal";
+	private static final String TREASURE = "Treasure";
+
+	public static boolean isVan(String s) {
+		return !isStone(s) && !isAnimal(s) && !isTreasure(s);
 	}
 
-	final protected boolean isStone(AbstractHippyRobot r) {
-		return HippyName.isStone(r.getName());
+	public static boolean isStone(String s) {
+		if (s == null || s.isEmpty()) {
+			return false;
+		}
+		return s.toLowerCase().contains(STONE.toLowerCase());
 	}
 
-	final protected boolean isAnimal(AbstractHippyRobot r) {
-		return HippyName.isAnimal(r.getName());
+	public static boolean isAnimal(String s) {
+		if (s == null || s.isEmpty()) {
+			return false;
+		}
+		return s.toLowerCase().contains(ANIMAL.toLowerCase());
 	}
 
-	final protected boolean isTreasure(AbstractHippyRobot r) {
-		return HippyName.isTreasure(r.getName());
+	public static boolean isTreasure(String s) {
+		if (s == null || s.isEmpty()) {
+			return false;
+		}
+		return s.toLowerCase().contains(TREASURE.toLowerCase());
 	}
 
 }

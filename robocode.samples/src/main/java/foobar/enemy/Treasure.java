@@ -1,7 +1,6 @@
 package foobar.enemy;
 
 import foobar.hippy.AbstractHippyRobot;
-import foobar.hippy.HippyName;
 import robocode.HitRobotEvent;
 
 /**
@@ -19,7 +18,7 @@ public final class Treasure extends AbstractHippyRobot {
 		//
 		// There is no winner yet and a Van hit the treasure
 		//
-		if (!winner && HippyName.isVan(event.getName())) {
+		if (!winner && isVan(event.getName())) {
 			//
 			// Print the winner's name
 			//

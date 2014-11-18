@@ -1,6 +1,6 @@
 package net.sf.robocode.ui.battleview.spaceship;
 
-import foobar.hippy.HippyName;
+import foobar.hippy.AbstractHippyRobot;
 
 public class ImageMovingObject {
 
@@ -14,16 +14,16 @@ public class ImageMovingObject {
 	private static final String PATH_TREASURE = "05";
 
 	public static String getBodyImage(String s) {
-		if (HippyName.isVan(s)) {
+		if (AbstractHippyRobot.isVan(s)) {
 			return bodyPath + PATH_VAN1 + ".png";
 		}
-		if (HippyName.isStone(s)) {
+		if (AbstractHippyRobot.isStone(s)) {
 			return bodyPath + PATH_STONE + ".png";
 		}
-		if (HippyName.isAnimal(s)) {
+		if (AbstractHippyRobot.isAnimal(s)) {
 			return bodyPath + PATH_ANIMAL + ".png";
 		}
-		if (HippyName.isTreasure(s)) {
+		if (AbstractHippyRobot.isTreasure(s)) {
 			return bodyPath + PATH_TREASURE + ".png";
 		}
 
