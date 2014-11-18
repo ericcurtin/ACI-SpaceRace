@@ -6,8 +6,9 @@ import java.awt.Graphics2D;
 import foobar.booster.AbstractBooster;
 import foobar.coolingsystem.AbstractCoolingSystem;
 import foobar.hippy.AbstractHippyRobot;
-import foobar.model.SpaceEngine;
+import foobar.model.Engine;
 import robocode.Bullet;
+import robocode.HitByBulletEvent;
 import robocode.ScannedRobotEvent;
 
 /**
@@ -19,13 +20,18 @@ import robocode.ScannedRobotEvent;
  * @author Alan O'Dea (contributor)
  */
 public abstract class AbstractVan extends AbstractHippyRobot {
-	private SpaceEngine spaceEngine = new SpaceEngine();
+
+	/**
+	 * Class members.
+	 */
+	private Engine spaceEngine = new Engine();
+	private boolean isFuelFilled = false;
+
 	private static final String warning = "The ACI Foobar hacking"
 			+ " challenge is over, please code ethically";
-	private boolean isFuelFilled;
 
 	protected AbstractVan() {
-		isFuelFilled = false;
+
 	}
 
 	/**
@@ -64,6 +70,25 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	}
 
 	/**
+	 * This method checks if the name of the Van is valid. If it contains
+	 * 'stone', 'animal' or 'treasure' then it is not valid.
+	 */
+	public final void checkVanName() {
+		if (super.isStone(getName())) {
+			throw new UnsupportedOperationException(
+					"You are not a stone, please change your spaceship class name");
+		}
+		if (super.isAnimal(getName())) {
+			throw new UnsupportedOperationException(
+					"You are not an animal, please change your spaceship class name");
+		}
+		if (super.isTreasure(getName())) {
+			throw new UnsupportedOperationException(
+					"You are not a treasure, please change your spaceship class name");
+		}
+	}
+
+	/**
 	 * The setFuel abstract method. This should be overridden to ensure fuel is
 	 * added at the start of the race.
 	 */
@@ -83,6 +108,84 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 			return;
 		}
 		System.out.println("You can only add fuel at the start of the race");
+	}
+
+	/**
+	 * The main method in every spaceship. You must override this to set up your
+	 * spaceship's basic behavior.
+	 */
+	public abstract void runACI();
+
+	@Override
+	@Deprecated
+	public final void onScannedRobot(ScannedRobotEvent event) {
+		if (super.isAnimal(getName())) {
+			onScannedAnimal(event);
+		} else if (super.isStone(getName())) {
+			onScannedStone(event);
+		} else if (super.isTreasure(getName())) {
+			onScannedTreasure(event);
+		} else {
+			onScannedVan(event);
+		}
+	}
+
+	/**
+	 * This method is automatically called when you scan with the radar and
+	 * there is an animal in its range. You should override it in your van if
+	 * you want to be informed of this event.
+	 * 
+	 * @param event
+	 *            the scanned-animal event set by the game
+	 */
+	public abstract void onScannedAnimal(ScannedRobotEvent event);
+
+	/**
+	 * This method is automatically called when you scan with the radar and
+	 * there is a stone in its range. You should override it in your van if you
+	 * want to be informed of this event.
+	 * 
+	 * @param event
+	 *            the scanned-stone event set by the game
+	 */
+	public abstract void onScannedStone(ScannedRobotEvent event);
+
+	/**
+	 * This method is automatically called when you scan with the radar and
+	 * there is a treasure in its range. You should override it in your van if
+	 * you want to be informed of this event.
+	 * 
+	 * @param event
+	 *            the scanned-treasure event set by the game
+	 */
+	public abstract void onScannedTreasure(ScannedRobotEvent event);
+
+	/**
+	 * This method is automatically called when you scan with the radar and
+	 * there is a van in its range. You should override it in your van if you
+	 * want to be informed of this event.
+	 * 
+	 * @param event
+	 *            the scanned-van event set by the game
+	 */
+	public abstract void onScannedVan(ScannedRobotEvent event);
+
+	/**
+	 * Checks the current temperature of this spaceship.
+	 * 
+	 * @return the temperature of this spaceship
+	 */
+	public double getTemperature() {
+		return spaceEngine.getTemperature();
+	}
+
+	/**
+	 * Checks if the spaceship is currently overheated.
+	 * 
+	 * @return true if it is overheated, false if it isn't
+	 */
+	protected boolean isOverheated() {
+		return getTemperature() >= Engine.OVERHEAT_TEMPERATURE;
 	}
 
 	/**
@@ -106,167 +209,6 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 */
 	protected void setCoolingSystem(AbstractCoolingSystem coolingSystem) {
 		spaceEngine.setCoolingSystem(coolingSystem);
-	}
-
-	/**
-	 * The main method in every spaceship. You must override this to set up your
-	 * spaceship's basic behavior.
-	 */
-	public abstract void runACI();
-
-	/**
-	 * This method checks if the name of the Van is valid. If it contains
-	 * 'stone', 'animal' or 'treasure' then it is not valid.
-	 */
-	public final void checkVanName() {
-		if (super.isStone(this)) {
-			throw new UnsupportedOperationException(
-					"You are not a stone, please change your spaceship class name");
-		}
-		if (super.isAnimal(this)) {
-			throw new UnsupportedOperationException(
-					"You are not an animal, please change your spaceship class name");
-		}
-		if (super.isTreasure(this)) {
-			throw new UnsupportedOperationException(
-					"You are not a treasure, please change your spaceship class name");
-		}
-	}
-
-	@Override
-	@Deprecated
-	public final void onScannedRobot(ScannedRobotEvent event) {
-		String name = event.getName();
-
-		if (isDummyAsteroid(name) || isCircularAsteroid(name)
-				|| isLargeAsteroid(name)) {
-			onScannedAsteroid(event);
-		} else {
-			onScannedSpaceship(event);
-		}
-	}
-
-	/**
-	 * Checks if asteroid is of type DummyAsteroid.
-	 * 
-	 * @param name
-	 *            the name of the MovingObject you have detected
-	 * @return true if it is of type DummyAsteroid, false if it isn't
-	 */
-	protected final boolean isDummyAsteroid(String name) {
-		return name.toLowerCase().contains("dummyasteroid");
-	}
-
-	/**
-	 * Checks if asteroid is of type CircularAsteroid.
-	 * 
-	 * @param name
-	 *            the name of the MovingObject you have detected
-	 * @return true if it is of type CircularAsteroid, false if it isn't
-	 */
-	protected final boolean isCircularAsteroid(String name) {
-		return name.toLowerCase().contains("circularasteroid");
-	}
-
-	/**
-	 * Checks if asteroid is of type LargeAsteroid.
-	 * 
-	 * @param name
-	 *            the name of the MovingObject you have detected
-	 * @return true if it is of type LargeAsteroid, false if it isn't
-	 */
-	protected final boolean isLargeAsteroid(String name) {
-		return name.toLowerCase().contains("largeasteroid");
-	}
-
-	/**
-	 * This method is called when your spaceship sees an asteroid, i.e. when the
-	 * spaceship's radar scan "hits" an asteroid. You should override it in your
-	 * spaceship if you want to be informed of this event. (Almost all
-	 * spaceships should override this!) This event is automatically called if
-	 * there is a spaceship in range of your radar.
-	 * 
-	 * @param event
-	 *            the scanned-asteroid event set by the game
-	 */
-	public abstract void onScannedAsteroid(ScannedRobotEvent event);
-
-	/**
-	 * This method is called when your spaceship sees another spaceship, i.e.
-	 * when the spaceship's radar scan "hits" another spaceship. You should
-	 * override it in your spaceship if you want to be informed of this event.
-	 * (Almost all spaceships should override this!) This event is automatically
-	 * called if there is a spaceship in range of your radar.
-	 * 
-	 * @param event
-	 *            the scanned-spaceship event set by the game
-	 */
-	public abstract void onScannedSpaceship(ScannedRobotEvent event);
-
-	/**
-	 * Checks the current temperature of this spaceship.
-	 * 
-	 * @return the temperature of this spaceship
-	 */
-	public double getTemperature() {
-		return spaceEngine.getTemperature();
-	}
-
-	/**
-	 * Checks if the spaceship is currently overheated.
-	 * 
-	 * @return true if it is overheated, false if it isn't
-	 */
-	protected boolean isOverheated() {
-		return getTemperature() >= SpaceEngine.overheatTemperature;
-	}
-
-	/**
-	 * Immediately turns the spaceship's gun to the left by degrees. This call
-	 * executes immediately, and does not return until it is complete, i.e. when
-	 * the angle remaining in the gun's turn is 0. Note that both positive and
-	 * negative values can be given as input, where negative values means that
-	 * the spaceship's gun is set to turn right instead of left.
-	 * 
-	 * @param degrees
-	 *            the amount of degrees to turn the spaceship's gun to the left.
-	 *            If degrees > 0 the spaceship's gun will turn left. If degrees
-	 *            < 0 the spaceship's gun will turn right. If degrees = 0 the
-	 *            spaceship's gun will not turn, but execute.
-	 */
-	@Override
-	public void turnGunLeft(double degrees) {
-		while (degrees > 20.0) {
-			spaceEngine.stop();
-			super.turnGunLeft(20.0);
-			degrees -= 20.0;
-		}
-		spaceEngine.stop();
-		super.turnGunLeft(degrees);
-	}
-
-	/**
-	 * Immediately turns the spaceship's gun to the right by degrees. This call
-	 * executes immediately, and does not return until it is complete, i.e. when
-	 * the angle remaining in the gun's turn is 0. Note that both positive and
-	 * negative values can be given as input, where negative values means that
-	 * the spaceship's gun is set to turn left instead of right.
-	 * 
-	 * @param degrees
-	 *            the amount of degrees to turn the spaceship's gun to the
-	 *            right. If degrees > 0 the spaceship's gun will turn right. If
-	 *            degrees < 0 the spaceship's gun will turn left. If degrees = 0
-	 *            the spaceship's gun will not turn, but execute.
-	 */
-	@Override
-	public void turnGunRight(double degrees) {
-		while (degrees > 20.0) {
-			spaceEngine.stop();
-			super.turnGunRight(20.0);
-			degrees -= 20.0;
-		}
-		spaceEngine.stop();
-		super.turnGunRight(degrees);
 	}
 
 	/**
@@ -317,27 +259,6 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		super.turnRadarRight(degrees);
 	}
 
-	/**
-	 * Immediately fires a bullet. The bullet will travel in the direction the
-	 * gun is pointing. The specified bullet power is an amount of energy that
-	 * will be taken from the spaceship's energy. Hence, the more power you want
-	 * to spend on the bullet, the more energy is taken from your spaceship. The
-	 * bullet will do (4 * power) damage if it hits another spaceship. You will
-	 * get (3 * power) back if you hit the other spaceship. You can call
-	 * Rules.getBulletDamage(double) for getting the damage that a bullet with a
-	 * specific bullet power will do. The maximum bullet power is .15. The
-	 * minimum bullet power is .1.
-	 */
-	@Override
-	public void fire(double power) {
-		final double maxPower = .15;
-		if (power < maxPower) {
-			super.fire(power);
-		} else {
-			super.fire(maxPower);
-		}
-	}
-
 	@Override
 	@Deprecated
 	public final void ahead(double distance) {
@@ -350,17 +271,14 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		throw new UnsupportedOperationException(warning);
 	}
 
-	/*
-	 * @Override
-	 * 
-	 * @Deprecated public final void doNothing() { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void fire(double power) { throw new
-	 * UnsupportedOperationException(warning); }
+	/**
+	 * Van does not fire.
 	 */
+	@Override
+	@Deprecated
+	public final void fire(double power) {
+		throw new UnsupportedOperationException(warning);
+	}
 
 	@Override
 	@Deprecated
@@ -382,6 +300,12 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 
 	@Override
 	@Deprecated
+	public final int getBattleNum() {
+		throw new UnsupportedOperationException(warning);
+	}
+
+	@Override
+	@Deprecated
 	public final double getEnergy() {
 		throw new UnsupportedOperationException(warning);
 	}
@@ -394,15 +318,24 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 
 	@Override
 	@Deprecated
+	public final double getGunCharge() {
+		throw new UnsupportedOperationException(warning);
+	}
+
+	@Override
+	@Deprecated
 	public final double getGunCoolingRate() {
 		throw new UnsupportedOperationException(warning);
 	}
 
-	// @Override
-	// @Deprecated
-	// public final double getGunHeading() {
-	// throw new UnsupportedOperationException(warning);
-	// }
+	/**
+	 * Van does not have gun. It can not get the gun heading.
+	 */
+	@Override
+	@Deprecated
+	public final double getGunHeading() {
+		throw new UnsupportedOperationException(warning);
+	}
 
 	@Override
 	@Deprecated
@@ -410,15 +343,27 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		throw new UnsupportedOperationException(warning);
 	}
 
-	// @Override
-	// @Deprecated
-	// public final double getHeading() {
-	// throw new UnsupportedOperationException(warning);
-	// }
+	@Override
+	@Deprecated
+	public final String getGunImageName() {
+		throw new UnsupportedOperationException(warning);
+	}
 
 	@Override
 	@Deprecated
 	public final double getHeight() {
+		throw new UnsupportedOperationException(warning);
+	}
+
+	@Override
+	@Deprecated
+	public final double getLife() {
+		throw new UnsupportedOperationException(warning);
+	}
+
+	@Override
+	@Deprecated
+	public final int getNumBattles() {
 		throw new UnsupportedOperationException(warning);
 	}
 
@@ -434,11 +379,17 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		throw new UnsupportedOperationException(warning);
 	}
 
-	// @Override
-	// @Deprecated
-	// public final double getRadarHeading() {
-	// throw new UnsupportedOperationException(warning);
-	// }
+	@Override
+	@Deprecated
+	public final String getRadarImageName() {
+		throw new UnsupportedOperationException(warning);
+	}
+
+	@Override
+	@Deprecated
+	public final String getRobotImageName() {
+		throw new UnsupportedOperationException(warning);
+	}
 
 	@Override
 	@Deprecated
@@ -476,125 +427,14 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		throw new UnsupportedOperationException(warning);
 	}
 
-	/*
-	 * @Override
-	 * 
-	 * @Deprecated public final void onBattleEnded(BattleEndedEvent event) {
-	 * throw new UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onBulletHit(BulletHitEvent event) { throw
-	 * new UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onBulletHitBullet(BulletHitBulletEvent
-	 * event) { throw new UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onBulletMissed(BulletMissedEvent event) {
-	 * throw new UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onDeath(DeathEvent event) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onHitByBullet(HitByBulletEvent event) {
-	 * throw new UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onHitRobot(HitRobotEvent event) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onHitWall(HitWallEvent event) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onKeyPressed(KeyEvent e) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onKeyReleased(KeyEvent e) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onKeyTyped(KeyEvent e) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onMouseClicked(MouseEvent e) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onMouseDragged(MouseEvent e) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onMouseEntered(MouseEvent e) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onMouseExited(MouseEvent e) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onMouseMoved(MouseEvent e) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onMousePressed(MouseEvent e) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onMouseReleased(MouseEvent e) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onMouseWheelMoved(MouseWheelEvent e) {
-	 * throw new UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onPaint(Graphics2D g) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onRobotDeath(RobotDeathEvent event) { throw
-	 * new UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onRoundEnded(RoundEndedEvent event) { throw
-	 * new UnsupportedOperationException(warning); }
-	 * 
-	 * public final void onStatus(StatusEvent e) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void onWin(WinEvent event) { throw new
-	 * UnsupportedOperationException(warning); }
+	/**
+	 * Van can not fire bullets. It can not be hit by any bullet.
 	 */
+	@Override
+	@Deprecated
+	public final void onHitByBullet(HitByBulletEvent event) {
+		throw new UnsupportedOperationException(warning);
+	}
 
 	@Override
 	@Deprecated
@@ -638,83 +478,28 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		throw new UnsupportedOperationException(warning);
 	}
 
+	/**
+	 * Van does not have gun. It can not set the gun color.
+	 */
+	@Override
+	@Deprecated
+	public final void setColors(Color bodyColor, Color gunColor,
+			Color radarColor) {
+		throw new UnsupportedOperationException(warning);
+	}
+
 	@Override
 	@Deprecated
 	public final void setDebugProperty(String key, String value) {
 		throw new UnsupportedOperationException(warning);
 	}
 
-	/*
-	 * @Override
-	 * 
-	 * @Deprecated public final void turnGunLeft(double degrees) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void turnGunRight(double degrees) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void turnLeft(double degrees) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void turnRadarLeft(double degrees) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void turnRadarRight(double degrees) { throw new
-	 * UnsupportedOperationException(warning); }
-	 * 
-	 * @Override
-	 * 
-	 * @Deprecated public final void turnRight(double degrees) { throw new
-	 * UnsupportedOperationException(warning); }
+	/**
+	 * Van does not have gun. It can not set the gun color.
 	 */
-
 	@Override
 	@Deprecated
-	public final int getBattleNum() {
-		throw new UnsupportedOperationException(warning);
-	}
-
-	@Override
-	@Deprecated
-	public final double getGunCharge() {
-		throw new UnsupportedOperationException(warning);
-	}
-
-	@Override
-	@Deprecated
-	public final String getGunImageName() {
-		throw new UnsupportedOperationException(warning);
-	}
-
-	@Override
-	@Deprecated
-	public final double getLife() {
-		throw new UnsupportedOperationException(warning);
-	}
-
-	@Override
-	@Deprecated
-	public final int getNumBattles() {
-		throw new UnsupportedOperationException(warning);
-	}
-
-	@Override
-	@Deprecated
-	public final String getRadarImageName() {
-		throw new UnsupportedOperationException(warning);
-	}
-
-	@Override
-	@Deprecated
-	public final String getRobotImageName() {
+	public final void setGunColor(Color color) {
 		throw new UnsupportedOperationException(warning);
 	}
 
@@ -741,4 +526,21 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	public final void setRobotImageName(String newRobotImageName) {
 		throw new UnsupportedOperationException(warning);
 	}
+
+	/**
+	 * Van does not have gun. It can not turn the gun left.
+	 */
+	@Override
+	public final void turnGunLeft(double degrees) {
+		throw new UnsupportedOperationException(warning);
+	}
+
+	/**
+	 * Van does not have gun. It can not turn the gun right.
+	 */
+	@Override
+	public final void turnGunRight(double degrees) {
+		throw new UnsupportedOperationException(warning);
+	}
+
 }
