@@ -4,7 +4,9 @@ import foobar.hippy.AbstractHippyRobot;
 import robocode.HitRobotEvent;
 
 /**
- * This is a type of Asteroid that doesn't move.
+ * A Treasure is the object that will define the winner of the race. Once a Van
+ * hits it then the treasure will spin just to let users now that the race is
+ * over, the name of the winner is printed in the Treasure's console.
  * 
  * @author Pablo Rodriguez (original)
  */
@@ -14,7 +16,6 @@ public final class Treasure extends AbstractHippyRobot {
 
 	@Override
 	public void onHitRobot(HitRobotEvent event) {
-
 		//
 		// There is no winner yet and a Van hit the treasure
 		//

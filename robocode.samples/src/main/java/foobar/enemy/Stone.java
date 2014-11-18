@@ -3,7 +3,8 @@ package foobar.enemy;
 import foobar.hippy.AbstractHippyRobot;
 
 /**
- * This is a type of Asteroid that doesn't move.
+ * A Stone just stands there, it does nothing. If a Van hits a Stone both get
+ * damaged.
  * 
  * @author Pablo Rodriguez (original)
  */
