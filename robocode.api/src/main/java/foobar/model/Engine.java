@@ -16,22 +16,27 @@ import foobar.fuel.Wood;
  * @author Eric Curtin (original)
  * @author Pablo Rodriguez (contributor)
  */
-public class SpaceEngine {
+public class Engine {
+
+	/**
+	 * Class members.
+	 */
+	private double speed, temperature;
+	private IFuel fuel;
+	private AbstractCoolingSystem coolingSystem;
+	private AbstractBooster booster;
 
 	/**
 	 * The temperature at which the space engine overheats.
 	 */
-	public final static double overheatTemperature = 5000.0;
-	protected double speed, temperature;
-	protected String name, message;
-	protected AbstractBooster booster;
-	protected IFuel fuel;
-	private AbstractCoolingSystem coolingSystem;
+	public final static double OVERHEAT_TEMPERATURE = 5000.0;
 
-	public SpaceEngine() {
+	public Engine() {
 		speed = 0;
 		temperature = 0;
 		fuel = new FuelTank();
+		coolingSystem = null;
+		booster = null;
 	}
 
 	public double accelerate() {
@@ -150,6 +155,6 @@ public class SpaceEngine {
 	 * @return true if the space engine if overheated, false if it isn't
 	 */
 	public boolean isOverheated() {
-		return temperature >= overheatTemperature;
+		return temperature >= OVERHEAT_TEMPERATURE;
 	}
 }
