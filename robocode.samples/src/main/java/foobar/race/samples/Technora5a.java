@@ -4,11 +4,11 @@ import java.awt.Color;
 import java.util.HashSet;
 import java.util.Set;
 
-import foobar.coolingsystem.LiquidHydrogen;
-import foobar.fuel.Coal;
-import foobar.fuel.Hydrogen;
-import foobar.fuel.Petrol;
 import foobar.hippy.van.AbstractVan;
+import foobar.hippy.van.coolingsystem.LiquidHydrogen;
+import foobar.hippy.van.fuel.Coal;
+import foobar.hippy.van.fuel.Hydrogen;
+import foobar.hippy.van.fuel.Petrol;
 import robocode.HitByBulletEvent;
 import robocode.ScannedRobotEvent;
 

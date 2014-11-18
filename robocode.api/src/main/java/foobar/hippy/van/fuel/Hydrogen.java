@@ -1,4 +1,4 @@
-package foobar.fuel;
+package foobar.hippy.van.fuel;
 
 /**
  * Hydrogen is a fuel.

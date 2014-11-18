@@ -1,4 +1,4 @@
-package foobar.fuel;
+package foobar.hippy.van.fuel;
 
 /**
  * Petrol is a fuel.

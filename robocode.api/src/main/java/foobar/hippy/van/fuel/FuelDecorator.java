@@ -1,4 +1,4 @@
-package foobar.fuel;
+package foobar.hippy.van.fuel;
 
 /**
  * FuelDecorator acts as abstract decorator in decorator pattern.

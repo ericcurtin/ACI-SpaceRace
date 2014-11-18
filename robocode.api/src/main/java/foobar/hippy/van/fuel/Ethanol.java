@@ -1,4 +1,4 @@
-package foobar.fuel;
+package foobar.hippy.van.fuel;
 
 /**
  * Ethanol is a fuel.

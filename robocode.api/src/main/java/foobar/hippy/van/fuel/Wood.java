@@ -1,4 +1,4 @@
-package foobar.fuel;
+package foobar.hippy.van.fuel;
 
 /**
  * Wood is a Fuel.

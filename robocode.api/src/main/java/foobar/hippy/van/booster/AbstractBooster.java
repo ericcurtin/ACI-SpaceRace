@@ -1,4 +1,4 @@
-package foobar.booster;
+package foobar.hippy.van.booster;
 
 /**
  * A booster may be used to give your space engine a speed boost.

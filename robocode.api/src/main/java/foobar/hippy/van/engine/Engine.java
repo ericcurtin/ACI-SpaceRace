@@ -1,14 +1,14 @@
-package foobar.model;
+package foobar.hippy.van.engine;
 
-import foobar.booster.AbstractBooster;
-import foobar.coolingsystem.AbstractCoolingSystem;
-import foobar.fuel.Coal;
-import foobar.fuel.Ethanol;
-import foobar.fuel.FuelTank;
-import foobar.fuel.Hydrogen;
-import foobar.fuel.IFuel;
-import foobar.fuel.Petrol;
-import foobar.fuel.Wood;
+import foobar.hippy.van.booster.AbstractBooster;
+import foobar.hippy.van.coolingsystem.AbstractCoolingSystem;
+import foobar.hippy.van.fuel.Coal;
+import foobar.hippy.van.fuel.Ethanol;
+import foobar.hippy.van.fuel.FuelTank;
+import foobar.hippy.van.fuel.Hydrogen;
+import foobar.hippy.van.fuel.IFuel;
+import foobar.hippy.van.fuel.Petrol;
+import foobar.hippy.van.fuel.Wood;
 
 /**
  * SpaceEngine consists of many different parts.

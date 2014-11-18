@@ -1,4 +1,4 @@
-package foobar.coolingsystem;
+package foobar.hippy.van.coolingsystem;
 
 /**
  * A LiquidHydrogen cooling system.

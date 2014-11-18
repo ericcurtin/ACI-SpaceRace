@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import foobar.booster.AbstractBooster;
-import foobar.coolingsystem.AbstractCoolingSystem;
 import foobar.hippy.AbstractHippyRobot;
-import foobar.model.Engine;
+import foobar.hippy.van.booster.AbstractBooster;
+import foobar.hippy.van.coolingsystem.AbstractCoolingSystem;
+import foobar.hippy.van.engine.Engine;
 import robocode.Bullet;
 import robocode.HitByBulletEvent;
 import robocode.ScannedRobotEvent;

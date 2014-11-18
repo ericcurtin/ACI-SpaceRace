@@ -1,4 +1,4 @@
-package foobar.booster;
+package foobar.hippy.van.booster;
 
 /**
  * SuperBooster is a booster.

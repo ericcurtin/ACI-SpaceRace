@@ -1,4 +1,4 @@
-package foobar.fuel;
+package foobar.hippy.van.fuel;
 
 /**
  * FuelTank is an empty fuel tank that the spaceship has to start with.

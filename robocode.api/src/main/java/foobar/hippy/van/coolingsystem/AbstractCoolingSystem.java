@@ -1,4 +1,4 @@
-package foobar.coolingsystem;
+package foobar.hippy.van.coolingsystem;
 
 /**
  * A cooling system may be used to cool down the space engine.
