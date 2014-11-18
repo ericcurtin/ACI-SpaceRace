@@ -1,12 +1,13 @@
 package foobar.enemy;
 
+import robocode.HitRobotEvent;
 import robocode.RobotDeathEvent;
 import robocode.ScannedRobotEvent;
 import foobar.hippy.AbstractHippyRobot;
 
 /**
  * An Animal does not do anything till a Van is in front of its line of vision
- * and the distance is less than 300. Once its awake it chases & fire the Van.
+ * and the distance is less than 200. Once its awake it chases & fire the Van.
  * 
  * @author Pablo Rodriguez (original)
  */
@@ -29,18 +30,13 @@ public final class Animal extends AbstractHippyRobot {
 		//
 		if (preyName.isEmpty() && isVan(event.getName())) {
 			//
-			// Van is in front and the distance is <300
+			// Van is in front and the distance is <200
 			//
-			if (isForward(event.getBearing()) && event.getDistance() < 300) {
+			if (isForward(event.getBearing()) && event.getDistance() < 200) {
 				//
 				// Select the prey
 				//
 				preyName = event.getName();
-
-				//
-				// Wake up movement
-				//
-				doWakeUpMovement();
 			}
 			//
 			// There is a prey and it has been scanned, so we'll chase & fire it
@@ -73,19 +69,21 @@ public final class Animal extends AbstractHippyRobot {
 		}
 	}
 
-	private boolean isForward(double bearing) {
-		return (bearing > (-2) && bearing < (2));
+	@Override
+	public void onHitRobot(HitRobotEvent event) {
+		//
+		// If a Van hits the Animal it will be the prey
+		//
+		if (isVan(event.getName())) {
+			//
+			// Select the prey
+			//
+			preyName = event.getName();
+		}
 	}
 
-	private void doWakeUpMovement() {
-		turnLeft(20);
-		turnRight(20);
-		turnLeft(20);
-		turnRight(20);
-		turnLeft(20);
-		turnRight(20);
-		turnLeft(20);
-		turnRight(20);
+	private boolean isForward(double bearing) {
+		return (bearing > (-2) && bearing < (2));
 	}
 
 }
