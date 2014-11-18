@@ -1,9 +1,9 @@
 #Battle Properties
 #Tue Oct 14 17:43:48 BST 2014
 robocode.battle.numRounds=1
-robocode.battleField.width=2000
+robocode.battleField.width=1200
 robocode.battle.gunCoolingRate=0.1
-robocode.battle.initialPositions=(20,450,90),(20,150,90),(500,450,0),(500,150,0),(1000,450,0),(1000,150,180),(1800,300,0)
+robocode.battle.initialPositions=(20,450,90),(20,150,90),(400,450,0),(400,150,0),(800,450,0),(800,150,180),(1200,300,0)
 robocode.battle.rules.inactivityTime=1000000
 robocode.battle.selectedRobots=foobar.race.samples.HappyVan1*,foobar.race.samples.HappyVan2*,foobar.enemy.Stone*,foobar.enemy.Stone*,foobar.enemy.Animal*,foobar.enemy.Animal*,foobar.enemy.Treasure*
 robocode.battle.hideEnemyNames=false
