@@ -3,8 +3,8 @@
 robocode.battle.numRounds=1
 robocode.battleField.width=1200
 robocode.battle.gunCoolingRate=0.1
-robocode.battle.initialPositions=(20,450,90),(20,150,90),(250,450,0),(250,150,0),(500,450,0),(500,150,180),(750,280,180),(750,320,0),(1000,20,0),(1000,580,180),(1200,300,0)
+robocode.battle.initialPositions=(250,450,0),(250,150,0),(500,450,0),(500,150,180),(750,280,180),(750,320,0),(1000,20,0),(1000,580,180),(1200,300,0),(20,450,90),(20,150,90)
 robocode.battle.rules.inactivityTime=1000000
-robocode.battle.selectedRobots=foobar.race.samples.HappyVan1*,foobar.race.samples.HappyVan2*,foobar.enemy.Stone*,foobar.enemy.Stone*,foobar.enemy.Animal*,foobar.enemy.Animal*,foobar.enemy.Animal*,foobar.enemy.Animal*,foobar.enemy.Stone*,foobar.enemy.Stone*,foobar.enemy.Treasure*
+robocode.battle.selectedRobots=foobar.enemy.Stone*,foobar.enemy.Stone*,foobar.enemy.Animal*,foobar.enemy.Animal*,foobar.enemy.Animal*,foobar.enemy.Animal*,foobar.enemy.Stone*,foobar.enemy.Stone*,foobar.enemy.Treasure*,foobar.race.samples.HappyVan1*,foobar.race.samples.HappyVan2*
 robocode.battle.hideEnemyNames=false
 robocode.battleField.height=600
