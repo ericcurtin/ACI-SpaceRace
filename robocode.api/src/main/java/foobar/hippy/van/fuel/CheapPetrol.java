@@ -11,7 +11,7 @@ public final class CheapPetrol extends FuelDecorator {
 	public CheapPetrol(IFuel fuel, double volume) {
 		super(fuel, volume);
 		individualFuelPower = 1;
-		individualTemperatureIncrease = 2;
+		individualTemperatureIncrease = 1;
 		mixFuel();
 	}
 }

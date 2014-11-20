@@ -27,7 +27,7 @@ public class Engine {
 	/**
 	 * The temperature at which the space engine overheats.
 	 */
-	public final static double OVERHEAT_TEMPERATURE = 5000.0;
+	public final static double OVERHEAT_TEMPERATURE = 1500.0;
 
 	public Engine() {
 		speed = 0;

@@ -11,7 +11,7 @@ public final class RacingPetrol extends FuelDecorator {
 	public RacingPetrol(IFuel fuel, double volume) {
 		super(fuel, volume);
 		individualFuelPower = 2;
-		individualTemperatureIncrease = 10;
+		individualTemperatureIncrease = 5;
 		mixFuel();
 	}
 }
