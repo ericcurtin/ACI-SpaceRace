@@ -5,10 +5,10 @@ package foobar.hippy.van.fuel;
  * 
  * @author Eric Curtin (original)
  */
-public final class Petrol extends FuelDecorator {
-	public final static String name = "Petrol";
+public final class ExpensivePetrol extends FuelDecorator {
+	public final static String name = "ExpensivePetrol";
 
-	public Petrol(IFuel fuel, double volume) {
+	public ExpensivePetrol(IFuel fuel, double volume) {
 		super(fuel, volume);
 		individualFuelPower = 1.5;
 		individualTemperatureIncrease = 5;

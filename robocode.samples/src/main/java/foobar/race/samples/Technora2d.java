@@ -3,9 +3,9 @@ package foobar.race.samples;
 import foobar.hippy.van.AbstractVan;
 import foobar.hippy.van.coolingsystem.Fan;
 import foobar.hippy.van.engine.Engine;
-import foobar.hippy.van.fuel.Coal;
-import foobar.hippy.van.fuel.Hydrogen;
-import foobar.hippy.van.fuel.Petrol;
+import foobar.hippy.van.fuel.CheapPetrol;
+import foobar.hippy.van.fuel.RacingPetrol;
+import foobar.hippy.van.fuel.ExpensivePetrol;
 import robocode.ScannedRobotEvent;
 
 /**
@@ -52,9 +52,9 @@ public class Technora2d extends AbstractVan {
 	 */
 	@Override
 	public void setFuel() {
-		addFuel(Coal.name, 3950);
-		addFuel(Petrol.name, 1000);
-		addFuel(Hydrogen.name, 50);
+		addFuel(CheapPetrol.name, 3950);
+		addFuel(ExpensivePetrol.name, 1000);
+		addFuel(RacingPetrol.name, 50);
 	}
 
 	@Override

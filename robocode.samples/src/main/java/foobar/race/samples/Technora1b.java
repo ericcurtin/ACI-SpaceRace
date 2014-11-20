@@ -1,9 +1,9 @@
 package foobar.race.samples;
 
 import foobar.hippy.van.AbstractVan;
-import foobar.hippy.van.fuel.Coal;
-import foobar.hippy.van.fuel.Hydrogen;
-import foobar.hippy.van.fuel.Petrol;
+import foobar.hippy.van.fuel.CheapPetrol;
+import foobar.hippy.van.fuel.RacingPetrol;
+import foobar.hippy.van.fuel.ExpensivePetrol;
 import robocode.ScannedRobotEvent;
 
 /**
@@ -36,9 +36,9 @@ public class Technora1b extends AbstractVan {
 	 */
 	@Override
 	public void setFuel() {
-		addFuel(Coal.name, 0);
-		addFuel(Petrol.name, 5000);
-		addFuel(Hydrogen.name, 0);
+		addFuel(CheapPetrol.name, 0);
+		addFuel(ExpensivePetrol.name, 5000);
+		addFuel(RacingPetrol.name, 0);
 	}
 
 	@Override

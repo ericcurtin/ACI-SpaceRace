@@ -2,11 +2,11 @@ package foobar.hippy.van.engine;
 
 import foobar.hippy.van.booster.AbstractBooster;
 import foobar.hippy.van.coolingsystem.AbstractCoolingSystem;
-import foobar.hippy.van.fuel.Coal;
+import foobar.hippy.van.fuel.CheapPetrol;
 import foobar.hippy.van.fuel.FuelTank;
-import foobar.hippy.van.fuel.Hydrogen;
+import foobar.hippy.van.fuel.RacingPetrol;
 import foobar.hippy.van.fuel.IFuel;
-import foobar.hippy.van.fuel.Petrol;
+import foobar.hippy.van.fuel.ExpensivePetrol;
 
 /**
  * SpaceEngine consists of many different parts.
@@ -116,12 +116,12 @@ public class Engine {
 	 */
 	public void addFuel(String fuelName, double volume) {
 		try {
-			if (fuelName.equalsIgnoreCase(Coal.name)) {
-				fuel = new Coal(fuel, volume);
-			} else if (fuelName.equalsIgnoreCase(Petrol.name)) {
-				fuel = new Petrol(fuel, volume);
-			} else if (fuelName.equalsIgnoreCase(Hydrogen.name)) {
-				fuel = new Hydrogen(fuel, volume);
+			if (fuelName.equalsIgnoreCase(CheapPetrol.name)) {
+				fuel = new CheapPetrol(fuel, volume);
+			} else if (fuelName.equalsIgnoreCase(ExpensivePetrol.name)) {
+				fuel = new ExpensivePetrol(fuel, volume);
+			} else if (fuelName.equalsIgnoreCase(RacingPetrol.name)) {
+				fuel = new RacingPetrol(fuel, volume);
 			} else {
 				System.out.println("Incorrect string entered, no fuel added");
 			}

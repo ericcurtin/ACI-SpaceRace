@@ -4,9 +4,9 @@ import java.awt.Color;
 
 import foobar.hippy.van.AbstractVan;
 import foobar.hippy.van.coolingsystem.LiquidHydrogen;
-import foobar.hippy.van.fuel.Coal;
-import foobar.hippy.van.fuel.Hydrogen;
-import foobar.hippy.van.fuel.Petrol;
+import foobar.hippy.van.fuel.CheapPetrol;
+import foobar.hippy.van.fuel.RacingPetrol;
+import foobar.hippy.van.fuel.ExpensivePetrol;
 import robocode.ScannedRobotEvent;
 
 /**
@@ -47,9 +47,9 @@ public class Technora3a extends AbstractVan {
 	 */
 	@Override
 	public void setFuel() {
-		addFuel(Coal.name, 5000);
-		addFuel(Petrol.name, 0);
-		addFuel(Hydrogen.name, 0);
+		addFuel(CheapPetrol.name, 5000);
+		addFuel(ExpensivePetrol.name, 0);
+		addFuel(RacingPetrol.name, 0);
 	}
 
 	@Override
