@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import foobar.hippy.van.AbstractVan;
-import foobar.hippy.van.coolingsystem.LiquidHydrogen;
 import foobar.hippy.van.fuel.CheapPetrol;
 import foobar.hippy.van.fuel.RacingPetrol;
 import foobar.hippy.van.fuel.ExpensivePetrol;
@@ -25,9 +24,6 @@ public class Technora5a extends AbstractVan {
 
 	// Constructor
 	public Technora5a() {
-
-		// Set the Cooling System
-		setCoolingSystem(new LiquidHydrogen());
 
 		// Set the colour of the spaceship
 		setBodyColor(Color.GREEN);

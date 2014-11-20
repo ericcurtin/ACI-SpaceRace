@@ -1,7 +1,6 @@
 package foobar.race.samples;
 
 import foobar.hippy.van.AbstractVan;
-import foobar.hippy.van.coolingsystem.LiquidHydrogen;
 import foobar.hippy.van.fuel.CheapPetrol;
 import foobar.hippy.van.fuel.RacingPetrol;
 import foobar.hippy.van.fuel.ExpensivePetrol;
@@ -19,8 +18,6 @@ public class Technora3b extends AbstractVan {
 	public Technora3b() {
 		super();
 
-		// Set the cooling System
-		setCoolingSystem(new LiquidHydrogen());
 	}
 
 	/**
@@ -63,25 +60,25 @@ public class Technora3b extends AbstractVan {
 	@Override
 	public void onScannedAnimal(ScannedRobotEvent event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onScannedStone(ScannedRobotEvent event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onScannedTreasure(ScannedRobotEvent event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onScannedVan(ScannedRobotEvent event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
