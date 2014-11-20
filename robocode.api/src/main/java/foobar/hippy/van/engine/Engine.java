@@ -3,12 +3,10 @@ package foobar.hippy.van.engine;
 import foobar.hippy.van.booster.AbstractBooster;
 import foobar.hippy.van.coolingsystem.AbstractCoolingSystem;
 import foobar.hippy.van.fuel.Coal;
-import foobar.hippy.van.fuel.Ethanol;
 import foobar.hippy.van.fuel.FuelTank;
 import foobar.hippy.van.fuel.Hydrogen;
 import foobar.hippy.van.fuel.IFuel;
 import foobar.hippy.van.fuel.Petrol;
-import foobar.hippy.van.fuel.Wood;
 
 /**
  * SpaceEngine consists of many different parts.
@@ -124,10 +122,6 @@ public class Engine {
 				fuel = new Petrol(fuel, volume);
 			} else if (fuelName.equalsIgnoreCase(Hydrogen.name)) {
 				fuel = new Hydrogen(fuel, volume);
-			} else if (fuelName.equalsIgnoreCase(Wood.name)) {
-				fuel = new Wood(fuel, volume);
-			} else if (fuelName.equalsIgnoreCase(Ethanol.name)) {
-				fuel = new Ethanol(fuel, volume);
 			} else {
 				System.out.println("Incorrect string entered, no fuel added");
 			}
