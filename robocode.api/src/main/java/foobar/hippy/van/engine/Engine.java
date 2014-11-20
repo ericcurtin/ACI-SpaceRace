@@ -1,6 +1,6 @@
 package foobar.hippy.van.engine;
 
-import foobar.hippy.van.booster.AbstractBooster;
+import foobar.hippy.van.booster.SpeedBooster;
 import foobar.hippy.van.coolingsystem.AbstractCoolingSystem;
 import foobar.hippy.van.fuel.CheapPetrol;
 import foobar.hippy.van.fuel.FuelTank;
@@ -22,7 +22,7 @@ public class Engine {
 	private double speed, temperature;
 	private IFuel fuel;
 	private AbstractCoolingSystem coolingSystem;
-	private AbstractBooster booster;
+	private SpeedBooster booster;
 
 	/**
 	 * The temperature at which the space engine overheats.
@@ -51,7 +51,7 @@ public class Engine {
 		fuel.decrementVolume();
 
 		if (booster != null) {
-			speed += booster.getBoost();
+			speed *= booster.getBoost();
 		}
 		System.out.println(currentDetails());
 		return speed;
@@ -107,7 +107,7 @@ public class Engine {
 	/**
 	 * Attach the engine's booster.
 	 */
-	public void setBooster(AbstractBooster booster) {
+	public void setBooster(SpeedBooster booster) {
 		this.booster = booster;
 	}
 

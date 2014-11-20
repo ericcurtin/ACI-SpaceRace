@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Random;
 
 import foobar.hippy.AbstractHippyRobot;
-import foobar.hippy.van.booster.AbstractBooster;
+import foobar.hippy.van.booster.SpeedBooster;
 import foobar.hippy.van.coolingsystem.AbstractCoolingSystem;
 import foobar.hippy.van.engine.Engine;
 import robocode.Bullet;
@@ -28,6 +28,8 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 */
 	private Engine spaceEngine = new Engine();
 	private boolean isFuelFilled = false;
+	private SpeedBooster vanBooster = null;
+
 	private Map<Integer, String> warningMessages = new HashMap<Integer, String>();
 	{
 		warningMessages
@@ -215,14 +217,17 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	}
 
 	/**
-	 * This method attaches the booster that you want to use to the spaceship.
-	 * You may only use one booster.
-	 * 
-	 * @param booster
-	 *            the booster you are going to attach to the Spaceship
+	 * This method uses the Van booster. It doubles its speed for 50 turns.
 	 */
-	protected void setBooster(AbstractBooster booster) {
-		spaceEngine.setBooster(booster);
+	protected void useBooster() {
+		if (vanBooster == null) {
+			vanBooster = new SpeedBooster();
+			spaceEngine.setBooster(vanBooster);
+		} else {
+			throw new UnsupportedOperationException(
+					"So you wanted to use a booster twice right? You can not do it.");
+		}
+
 	}
 
 	/**
