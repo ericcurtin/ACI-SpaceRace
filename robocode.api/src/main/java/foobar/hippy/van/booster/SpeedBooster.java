@@ -1,7 +1,7 @@
 package foobar.hippy.van.booster;
 
 /**
- * SpeedBooster doubles the speed fot 50 turns.
+ * SpeedBooster doubles the speed fot 50 times.
  * 
  * @author Pablo Rodriguez (original)
  */
@@ -19,8 +19,10 @@ public final class SpeedBooster {
 		if (nTurns > 0) {
 			nTurns--;
 			return booster;
+		} else {
+			// It multiplies the Van Speed so it can not be 0.
+			return 1.0;
 		}
-		// It multiplies the Van Speed so it can not be 0.
-		return 1.0;
 	}
+
 }

@@ -26,7 +26,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	/**
 	 * Class members.
 	 */
-	private Engine spaceEngine = new Engine();
+	private Engine engine = new Engine();
 	private boolean isFuelFilled = false;
 	private SpeedBooster vanBooster = null;
 
@@ -54,8 +54,8 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 * Accelerate and move your spaceship forward.
 	 */
 	public void accelerate() {
-		if (spaceEngine.canAccelerate()) {
-			super.ahead(spaceEngine.accelerate());
+		if (engine.canAccelerate()) {
+			super.ahead(engine.accelerate());
 		} else {
 			// Skip the turn, don't use cooling system
 			doNothing();
@@ -68,7 +68,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	@Override
 	public void stop() {
 		// Use cooling system
-		spaceEngine.stop();
+		engine.stop();
 
 		// Stop
 		super.stop();
@@ -120,7 +120,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 */
 	protected void addFuel(String fuelName, double value) {
 		if (!isFuelFilled) {
-			spaceEngine.addFuel(fuelName, value);
+			engine.addFuel(fuelName, value);
 			return;
 		}
 		System.out.println("You can only add fuel at the start of the race");
@@ -204,7 +204,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 * @return the temperature of this spaceship
 	 */
 	public double getTemperature() {
-		return spaceEngine.getTemperature();
+		return engine.getTemperature();
 	}
 
 	/**
@@ -217,12 +217,13 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	}
 
 	/**
-	 * This method uses the Van booster. It doubles its speed for 50 turns.
+	 * This method uses the Van booster. It doubles its speed for the next 50
+	 * accelerate movement/calls.
 	 */
 	protected void useBooster() {
 		if (vanBooster == null) {
 			vanBooster = new SpeedBooster();
-			spaceEngine.setBooster(vanBooster);
+			engine.setBooster(vanBooster);
 		} else {
 			throw new UnsupportedOperationException(
 					"So you wanted to use a booster twice right? You can not do it.");
@@ -239,7 +240,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 *            Spaceship
 	 */
 	protected void setCoolingSystem(AbstractCoolingSystem coolingSystem) {
-		spaceEngine.setCoolingSystem(coolingSystem);
+		engine.setCoolingSystem(coolingSystem);
 	}
 
 	/**
@@ -258,11 +259,11 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	@Override
 	public void turnRadarLeft(double degrees) {
 		while (degrees > 45.0) {
-			spaceEngine.stop();
+			engine.stop();
 			super.turnRadarLeft(45.0);
 			degrees -= 45.0;
 		}
-		spaceEngine.stop();
+		engine.stop();
 		super.turnRadarLeft(degrees);
 	}
 
@@ -282,11 +283,11 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	@Override
 	public void turnRadarRight(double degrees) {
 		while (degrees > 45.0) {
-			spaceEngine.stop();
+			engine.stop();
 			super.turnRadarRight(45.0);
 			degrees -= 45.0;
 		}
-		spaceEngine.stop();
+		engine.stop();
 		super.turnRadarRight(degrees);
 	}
 
