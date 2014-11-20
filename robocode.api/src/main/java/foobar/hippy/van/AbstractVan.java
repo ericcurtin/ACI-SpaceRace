@@ -11,7 +11,6 @@ import foobar.hippy.van.booster.AbstractBooster;
 import foobar.hippy.van.coolingsystem.AbstractCoolingSystem;
 import foobar.hippy.van.engine.Engine;
 import robocode.Bullet;
-import robocode.HitByBulletEvent;
 import robocode.ScannedRobotEvent;
 
 /**
@@ -134,11 +133,13 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	@Override
 	@Deprecated
 	public final void onScannedRobot(ScannedRobotEvent event) {
-		if (super.isAnimal(getName())) {
+		String scannedRobotName = event.getName();
+
+		if (super.isAnimal(scannedRobotName)) {
 			onScannedAnimal(event);
-		} else if (super.isStone(getName())) {
+		} else if (super.isStone(scannedRobotName)) {
 			onScannedStone(event);
-		} else if (super.isTreasure(getName())) {
+		} else if (super.isTreasure(scannedRobotName)) {
 			onScannedTreasure(event);
 		} else {
 			onScannedVan(event);
@@ -430,25 +431,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 
 	@Override
 	@Deprecated
-	public final double getVelocity() {
-		throw new UnsupportedOperationException(getRandomWarningMessage());
-	}
-
-	@Override
-	@Deprecated
 	public final double getWidth() {
-		throw new UnsupportedOperationException(getRandomWarningMessage());
-	}
-
-	@Override
-	@Deprecated
-	public final double getX() {
-		throw new UnsupportedOperationException(getRandomWarningMessage());
-	}
-
-	@Override
-	@Deprecated
-	public final double getY() {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
