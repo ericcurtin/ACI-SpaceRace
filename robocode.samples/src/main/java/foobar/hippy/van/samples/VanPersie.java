@@ -59,18 +59,20 @@ import robocode.ScannedRobotEvent;
 
 public class VanPersie extends AbstractVan {
 
-	@Override
-	public void runACI() {
-		//
-		// Set Van colors (optional)
-		//
-		setBodyColor(Color.RED);
-		setRadarColor(Color.WHITE);
-
+	public VanPersie() {
 		//
 		// Set the Cooling System of the Van.
 		//
 		setCoolingSystem(new Fan());
+	}
+
+	@Override
+	public void runACI() {
+		//
+		// Set Van colors (optional).
+		//
+		setBodyColor(Color.RED);
+		setRadarColor(Color.WHITE);
 
 		//
 		// Main loop.

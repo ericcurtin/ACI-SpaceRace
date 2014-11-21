@@ -55,18 +55,20 @@ import robocode.ScannedRobotEvent;
 
 public class VanNistelrooy extends AbstractVan {
 
-	@Override
-	public void runACI() {
-		//
-		// Set Van colors (optional)
-		//
-		setBodyColor(Color.WHITE);
-		setRadarColor(Color.blue);
-
+	public VanNistelrooy() {
 		//
 		// Set the Cooling System of the Van.
 		//
 		setCoolingSystem(new Fan());
+	}
+
+	@Override
+	public void runACI() {
+		//
+		// Set Van colors (optional).
+		//
+		setBodyColor(Color.WHITE);
+		setRadarColor(Color.blue);
 
 		//
 		// Main loop.
