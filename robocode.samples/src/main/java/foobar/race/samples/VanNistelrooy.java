@@ -11,7 +11,7 @@ import robocode.ScannedRobotEvent;
  * 
  * @author Pablo Rodriguez (original)
  */
-public class HappyVan1 extends AbstractVan {
+public class VanNistelrooy extends AbstractVan {
 
 	/**
 	 * {@inheritDoc}
@@ -23,11 +23,11 @@ public class HappyVan1 extends AbstractVan {
 		// Hardcode the route so the Van will go to the center ( aprox ) of the
 		// screen so it will hit the Treasure
 		//
-		turnRight(90);
+		turnLeft(90);
 		for (int i = 0; i < 150; i++) {
 			accelerate();
 		}
-		turnLeft(90);
+		turnRight(90);
 		for (int i = 0; i < 150; i++) {
 			accelerate();
 		}
@@ -36,9 +36,12 @@ public class HappyVan1 extends AbstractVan {
 		while (true) {
 
 			// Move forward 30 turns
-			// for (int i = 0; i < 30; i++) {
-			accelerate();
-			// }
+			for (int i = 0; i < 30; i++) {
+				accelerate();
+			}
+
+			// Scan for other spaceships / asteroids.
+			moveRadar();
 		}
 	}
 
@@ -47,9 +50,13 @@ public class HappyVan1 extends AbstractVan {
 	 */
 	@Override
 	public void setFuel() {
-		addFuel(CheapPetrol.name, 5000);
+		addFuel(CheapPetrol.name, 2500);
 		addFuel(ExpensivePetrol.name, 0);
 		addFuel(RacingPetrol.name, 0);
+	}
+
+	private void moveRadar() {
+		turnRadarRight(360);
 	}
 
 	@Override
