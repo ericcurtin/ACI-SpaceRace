@@ -7,7 +7,7 @@ import foobar.hippy.AbstractHippyRobot;
 
 /**
  * An Animal does not do anything till a Van is in front of its line of vision
- * and the distance is less than 200. Once its awake it chases & fire the Van.
+ * and the distance is less than 300. Once its awake it chases & fire the Van.
  * 
  * @author Pablo Rodriguez (original)
  */
@@ -32,7 +32,7 @@ public final class Animal extends AbstractHippyRobot {
 			//
 			// Van is in front and the distance is <200
 			//
-			if (isForward(event.getBearing()) && event.getDistance() < 200) {
+			if (isForward(event.getBearing()) && event.getDistance() <= 300) {
 				//
 				// Select the prey
 				//
