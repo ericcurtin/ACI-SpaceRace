@@ -28,7 +28,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 */
 	private Engine engine = new Engine();
 	private boolean isFuelFilled = false;
-	private SpeedBooster vanBooster = null;
+	private boolean isBoosterUsed = false;
 
 	private Map<Integer, String> warningMessages = new HashMap<Integer, String>();
 	{
@@ -217,18 +217,24 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	}
 
 	/**
-	 * This method uses the Van booster. It doubles its speed for the next 50
-	 * accelerate movement/calls.
+	 * This method uses the Van SpeedBooster. It doubles its speed for the next
+	 * 50 accelerate calls.
 	 */
 	protected void useBooster() {
-		if (vanBooster == null) {
-			vanBooster = new SpeedBooster();
-			engine.setBooster(vanBooster);
+		if (!isBoosterUsed()) {
+			engine.setBooster(new SpeedBooster());
+			isBoosterUsed = true;
 		} else {
 			throw new UnsupportedOperationException(
 					"So you wanted to use a booster twice right? You can not do it.");
 		}
+	}
 
+	/**
+	 * This method checks if the Van SpeedBooster has been used.
+	 */
+	protected boolean isBoosterUsed() {
+		return isBoosterUsed;
 	}
 
 	/**
