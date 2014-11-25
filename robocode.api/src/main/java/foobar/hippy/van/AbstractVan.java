@@ -15,8 +15,8 @@ import robocode.HitRobotEvent;
 import robocode.ScannedRobotEvent;
 
 /**
- * The is the spaceship base class that ACI FooBar challenge competitors should
- * extend from.
+ * The AbstractVan is the Van base class that ACI FooBar Challenge 2015
+ * competitors should extend from.
  * 
  * @author Eric Curtin (original)
  * @author Pablo Rodriguez (contributor)
@@ -25,92 +25,152 @@ import robocode.ScannedRobotEvent;
 public abstract class AbstractVan extends AbstractHippyRobot {
 
 	/**
-	 * Class members.
+	 * It defines the Van's engine.
 	 */
 	private Engine engine = new Engine();
+
+	/**
+	 * It defines if the Van's fuel has been filled.
+	 */
 	private boolean isFuelFilled = false;
+
+	/**
+	 * It defines if the Van's booster has been used.
+	 */
 	private boolean isBoosterUsed = false;
 
+	/**
+	 * It defines a Map< Integer id, String message > with funny messages that
+	 * will be displayed when developers try to use methods that they shouldn't.
+	 */
 	private Map<Integer, String> warningMessages = new HashMap<Integer, String>();
 	{
 		warningMessages
 				.put(0,
-						"The ACI Foobar hacking challenge is over, please code ethically");
+						"The ACI Foobar hacking challenge is over, please code ethically.");
 		warningMessages
 				.put(1,
-						"Do you think you can win using deprecated methods? Now you know that you can't");
+						"Do you think you can win using deprecated methods? Now you know that you can't.");
 		warningMessages
 				.put(2,
-						"So I said to the judge: I swear I didn't try to cheat, it's just that I used deprecated methods");
+						"So I said to the judge: I swear I didn't try to cheat, it's just that I used deprecated methods.");
 		warningMessages
 				.put(3,
-						"You are banned from the ACI FooBar Challenge... Well... You're not but next time don't use deprecated methods");
-	}
-
-	protected AbstractVan() {
-
+						"You are banned from the ACI FooBar Challenge... Well... You're not but next time don't use deprecated methods.");
+		warningMessages
+				.put(4,
+						"Please write one zillion times on a paper sheet: 'I won't use deprecated methods again'.");
+		warningMessages
+				.put(5,
+						"Hello! I am Mr. Annoying: If you don't use deprecated methods I swear I won't visit you again.");
+		warningMessages
+				.put(6,
+						"I am sexy and (using deprecated methods is not cool and) I know it.");
 	}
 
 	/**
-	 * Accelerate and move your spaceship forward.
+	 * Immediately accelerates the Van (if possible) so it will move forward.
+	 * Van won't move if it runs out of fuel or if it is overheated. If the Van
+	 * can not move then the temperature will remain as you're still trying to
+	 * accelerate. When a Van is moving:
+	 * <p/>
+	 * - The fuel volume will decrease by 1.
+	 * <p/>
+	 * - The fuel mix will increase the engine temperature.
+	 * <p/>
+	 * - If a cooling system is defined it will decrease the engine temperature.
 	 */
 	public void accelerate() {
 		if (engine.canAccelerate()) {
 			super.ahead(engine.accelerate());
 		} else {
-			// Skip the turn, don't use cooling system
+			//
+			// Skip the turn, don't use cooling system.
+			//
 			doNothing();
 		}
 	}
 
 	/**
-	 * Stop your spaceship.
+	 * Immediately stops your Van. When a Van is stopped:
+	 * <p/>
+	 * - If a cooling system is defined it will decrease the engine temperature.
 	 */
 	@Override
 	public void stop() {
-		// Use cooling system
+		//
+		// Use cooling system.
+		//
 		engine.stop();
 
-		// Stop
+		//
+		// Stop moving.
+		//
 		super.stop();
 	}
 
+	/**
+	 * The old main method in every Van.
+	 * 
+	 * @deprecated Use {@link AbstractVan#runACI() runACI()} instead.
+	 */
 	@Override
 	@Deprecated
 	public final void run() {
-		// Check if the name is valid
+		//
+		// Check if the name is valid.
+		//
 		checkVanName();
 
+		//
+		// Sets the Van's fuel mix.
+		//
 		setFuel();
 		isFuelFilled = true;
+
+		//
+		// Call the main method.
+		//
 		runACI();
 	}
 
 	/**
-	 * This method checks if the name of the Van is valid. If it contains
-	 * 'stone', 'animal' or 'treasure' then it is not valid.
+	 * Checks if the Van's name is valid. All names are valid as long as they
+	 * don't contain the words 'stone', 'animal' or 'treasure'.
+	 * 
+	 * @throws UnsupportedOperationException
+	 *             When the Van does not have a valid Van name.
 	 */
 	private final void checkVanName() {
 		if (super.isStone(getName())) {
 			throw new UnsupportedOperationException(
-					"You are not a stone, please change your spaceship class name");
+					"You are not a stone, please change your Van class name.");
 		} else if (super.isAnimal(getName())) {
 			throw new UnsupportedOperationException(
-					"You are not an animal, please change your spaceship class name");
+					"You are not an animal, please change your Van class name.");
 		} else if (super.isTreasure(getName())) {
 			throw new UnsupportedOperationException(
-					"You are not a treasure, please change your spaceship class name");
+					"You are not a treasure, please change your Van class name.");
 		}
 	}
 
 	/**
-	 * The setFuel abstract method. This should be overridden to ensure fuel is
-	 * added at the start of the race.
+	 * It defines the fuel mix. This method should be overridden to ensure fuel
+	 * is added at the start of the race.
+	 * <p/>
+	 * Example:
+	 * 
+	 * <pre>
+	 * // A basic fuel mix that only contains 5000 litres of CheapPetrol.
+	 * protected void setFuel() {
+	 * 	addFuel(CheapPetrol.name, 5000);
+	 * }
+	 * </pre>
 	 */
 	protected abstract void setFuel();
 
 	/**
-	 * Use this method to add fuel to your spaceship.
+	 * Use this method to add fuel to your Van.
 	 * 
 	 * @param fuelName
 	 *            the name of the fuel you are going to add
@@ -142,44 +202,82 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	}
 
 	/**
-	 * This method is called when your robot collides with an Animal. You should
-	 * override it in your robot if you want to be informed of this event.
+	 * This method is called when your Van collides with an Animal. You should
+	 * override it in your Van if you want to be informed of this event.
 	 */
 	public void onHitAnimal(HitRobotEvent event) {
+		//
 		// Do nothing. It's up to the developer to override this method.
+		//
 	}
 
 	/**
-	 * This method is called when your robot collides with a Stone. You should
-	 * override it in your robot if you want to be informed of this event.
+	 * This method is called when your Van collides with a Stone. You should
+	 * override it in your Van if you want to be informed of this event.
 	 */
 	public void onHitStone(HitRobotEvent event) {
+		//
 		// Do nothing. It's up to the developer to override this method.
+		//
 	}
 
 	/**
-	 * This method is called when your robot collides with a Treasure. You
-	 * should override it in your robot if you want to be informed of this
-	 * event.
+	 * This method is called when your Van collides with a Treasure. You should
+	 * override it in your Van if you want to be informed of this event.
 	 */
 	public void onHitTreasure(HitRobotEvent event) {
+		//
 		// Do nothing. It's up to the developer to override this method.
+		//
 	}
 
 	/**
-	 * This method is called when your robot collides with a Van. You should
-	 * override it in your robot if you want to be informed of this event.
+	 * This method is called when your Van collides with a Van. You should
+	 * override it in your Van if you want to be informed of this event.
 	 */
 	public void onHitVan(HitRobotEvent event) {
+		//
 		// Do nothing. It's up to the developer to override this method.
+		//
 	}
 
 	/**
-	 * The main method in every spaceship. You must override this to set up your
-	 * spaceship's basic behavior.
+	 * The main method in every Van. You must override this to set up your Van's
+	 * basic behavior.
+	 * <p/>
+	 * Example:
+	 * 
+	 * <pre>
+	 * // A basic Van that moves around in a square
+	 * public void runACI() {
+	 * 	while (true) {
+	 * 		for (int i = 0; i &lt; 50; i++) {
+	 * 			accelerate();
+	 * 		}
+	 * 		turnRight(90);
+	 * 	}
+	 * }
+	 * </pre>
 	 */
 	public abstract void runACI();
 
+	/**
+	 * Old method that is called when your Van sees another robot.
+	 * 
+	 * @deprecated Use one of the following methods instead:
+	 *             <p/>
+	 *             {@link AbstractVan#onScannedAnimal(ScannedRobotEvent)
+	 *             onScannedAnimal()}
+	 *             <p/>
+	 *             {@link AbstractVan#onScannedStone(ScannedRobotEvent)
+	 *             onScannedStone()}
+	 *             <p/>
+	 *             {@link AbstractVan#onScannedTreasure(ScannedRobotEvent)
+	 *             onScannedTreasure()}
+	 *             <p/>
+	 *             {@link AbstractVan#onScannedVan(ScannedRobotEvent)
+	 *             onScannedVan()}
+	 */
 	@Override
 	@Deprecated
 	public final void onScannedRobot(ScannedRobotEvent event) {
@@ -198,48 +296,48 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 
 	/**
 	 * This method is automatically called when you scan with the radar and
-	 * there is an animal in its range. You should override it in your van if
+	 * there is an Animal in its range. You should override it in your Van if
 	 * you want to be informed of this event.
 	 * 
 	 * @param event
-	 *            the scanned-animal event set by the game
+	 *            the scanned-Animal event set by the game
 	 */
 	public abstract void onScannedAnimal(ScannedRobotEvent event);
 
 	/**
 	 * This method is automatically called when you scan with the radar and
-	 * there is a stone in its range. You should override it in your van if you
+	 * there is a Stone in its range. You should override it in your Van if you
 	 * want to be informed of this event.
 	 * 
 	 * @param event
-	 *            the scanned-stone event set by the game
+	 *            the scanned-Stone event set by the game
 	 */
 	public abstract void onScannedStone(ScannedRobotEvent event);
 
 	/**
 	 * This method is automatically called when you scan with the radar and
-	 * there is a treasure in its range. You should override it in your van if
+	 * there is a Treasure in its range. You should override it in your Van if
 	 * you want to be informed of this event.
 	 * 
 	 * @param event
-	 *            the scanned-treasure event set by the game
+	 *            the scanned-Treasure event set by the game
 	 */
 	public abstract void onScannedTreasure(ScannedRobotEvent event);
 
 	/**
 	 * This method is automatically called when you scan with the radar and
-	 * there is a van in its range. You should override it in your van if you
+	 * there is a Van in its range. You should override it in your Van if you
 	 * want to be informed of this event.
 	 * 
 	 * @param event
-	 *            the scanned-van event set by the game
+	 *            the scanned-Van event set by the game
 	 */
 	public abstract void onScannedVan(ScannedRobotEvent event);
 
 	/**
 	 * Get a random warning message from the 'warningMessages' class member.
 	 * 
-	 * @return random warning message from the 'warningMessages' class member.
+	 * @return random warning message from 'warningMessages'.
 	 */
 	private String getRandomWarningMessage() {
 		Random r = new Random();
@@ -247,54 +345,56 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	}
 
 	/**
-	 * Checks the current temperature of this spaceship.
+	 * Checks the current temperature of the Van's engine.
 	 * 
-	 * @return the temperature of this spaceship
+	 * @return the temperature of the engine.
 	 */
 	public double getTemperature() {
 		return engine.getTemperature();
 	}
 
 	/**
-	 * This method checks if the Van SpeedBooster has been used.
+	 * Checks if the Van's booster has been used.
+	 * 
+	 * @return true if the Van's booster has been used has been used, false
+	 *         otherwise.
 	 */
 	protected boolean isVanBoosterUsed() {
 		return isBoosterUsed;
 	}
 
 	/**
-	 * Checks if the spaceship is currently overheated.
+	 * Checks if the Van's engine is currently overheated.
 	 * 
-	 * @return true if it is overheated, false if it isn't
+	 * @return true if the engine is overheated, false otherwise.
 	 */
 	protected boolean isVanOverheated() {
 		return getTemperature() >= Engine.OVERHEAT_TEMPERATURE;
 	}
 
 	/**
-	 * This method attaches the cooling system that you want to use to the
-	 * spaceship. You may only use one cooling system.
+	 * This method attaches the cooling system that you want to use to the Van.
+	 * You may only use one cooling system.
 	 * 
 	 * @param coolingSystem
-	 *            the cooling system you are going to attach to the the
-	 *            Spaceship
+	 *            the cooling system you are going to attach to the the Van.
 	 */
 	protected void setCoolingSystem(AbstractCoolingSystem coolingSystem) {
 		engine.setCoolingSystem(coolingSystem);
 	}
 
 	/**
-	 * Immediately turns the spaceship's radar to the left by degrees. This call
+	 * Immediately turns the Van's radar to the left by degrees. This call
 	 * executes immediately, and does not return until it is complete, i.e. when
-	 * the angle remaining in the spaceship's turn is 0. Note that both positive
-	 * and negative values can be given as input, where negative values means
-	 * that the robot's radar is set to turn right instead of left.
+	 * the angle remaining in the Van's turn is 0. Note that both positive and
+	 * negative values can be given as input, where negative values means that
+	 * the Van's radar is set to turn right instead of left.
 	 * 
 	 * @param degrees
-	 *            the amount of degrees to turn the spaceship's radar to the
-	 *            left. If degrees > 0 the spaceship's radar will turn left. If
-	 *            degrees < 0 the spaceship's radar will turn right. If degrees
-	 *            = 0 the spaceship's radar will not turn, but execute.
+	 *            the amount of degrees to turn the Van's radar to the left. If
+	 *            degrees > 0 the Van's radar will turn left. If degrees < 0 the
+	 *            Van's radar will turn right. If degrees = 0 the Van's radar
+	 *            will not turn, but execute.
 	 */
 	@Override
 	public void turnRadarLeft(double degrees) {
@@ -308,17 +408,17 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	}
 
 	/**
-	 * Immediately turns the spaceship's radar to the right by degrees. This
-	 * call executes immediately, and does not return until it is complete, i.e.
-	 * when the angle remaining in the spaceship's turn is 0. Note that both
-	 * positive and negative values can be given as input, where negative values
-	 * means that the spaceship's radar is set to turn left instead of right.
+	 * Immediately turns the Van's radar to the right by degrees. This call
+	 * executes immediately, and does not return until it is complete, i.e. when
+	 * the angle remaining in the Van's turn is 0. Note that both positive and
+	 * negative values can be given as input, where negative values means that
+	 * the Van's radar is set to turn left instead of right.
 	 * 
 	 * @param degrees
-	 *            the amount of degrees to turn the spaceship's radar to the
-	 *            right. If degrees > 0 the spaceship's radar will turn right.
-	 *            If degrees < 0 the spaceship's radar will turn left. If
-	 *            degrees = 0 the spaceship's radar will not turn, but execute.
+	 *            the amount of degrees to turn the Van's radar to the right. If
+	 *            degrees > 0 the Van's radar will turn right. If degrees < 0
+	 *            the Van's radar will turn left. If degrees = 0 the Van's radar
+	 *            will not turn, but execute.
 	 */
 	@Override
 	public void turnRadarRight(double degrees) {
@@ -332,8 +432,8 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	}
 
 	/**
-	 * This method uses the Van SpeedBooster. It doubles its speed for the next
-	 * 50 accelerate calls.
+	 * This method uses the Van 's booster. It doubles its speed for the next 50
+	 * accelerate calls.
 	 */
 	protected void useBooster() {
 		if (!isVanBoosterUsed()) {
@@ -345,12 +445,23 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		}
 	}
 
+	/**
+	 * Immediately moves your Van ahead.
+	 * 
+	 * @deprecated Use {@link AbstractVan#accelerate() accelerate()} instead.
+	 */
 	@Override
 	@Deprecated
 	public final void ahead(double distance) {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
+	/**
+	 * Immediately moves your Van back.
+	 * 
+	 * @deprecated Turn the Van 180 degrees and use
+	 *             {@link AbstractVan#accelerate() accelerate()} instead.
+	 */
 	@Override
 	@Deprecated
 	public final void back(double distance) {
@@ -358,7 +469,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	}
 
 	/**
-	 * Van does not fire.
+	 * Van does not fire bullets.
 	 */
 	@Override
 	@Deprecated
@@ -366,6 +477,9 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
+	/**
+	 * Van does not fire bullets.
+	 */
 	@Override
 	@Deprecated
 	public final Bullet fireBullet(double power) {
@@ -378,7 +492,6 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
-	@Override
 	@Deprecated
 	public final double getBattleFieldWidth() {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
@@ -402,12 +515,18 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
+	/**
+	 * Van does not have a Gun.
+	 */
 	@Override
 	@Deprecated
 	public final double getGunCharge() {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
+	/**
+	 * Van does not have a Gun.
+	 */
 	@Override
 	@Deprecated
 	public final double getGunCoolingRate() {
@@ -415,7 +534,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	}
 
 	/**
-	 * Van does not have gun. It can not get the gun heading.
+	 * Van does not have a Gun.
 	 */
 	@Override
 	@Deprecated
@@ -423,12 +542,18 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
+	/**
+	 * Van does not have a Gun.
+	 */
 	@Override
 	@Deprecated
 	public final double getGunHeat() {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
+	/**
+	 * Van does not have a Gun.
+	 */
 	@Override
 	@Deprecated
 	public final String getGunImageName() {
@@ -525,12 +650,42 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
-	@Override
-	@Deprecated
+	/**
+	 * Sets all the robot's color to the same color in the same time, i.e. the
+	 * color of the body, radar and scan arc.
+	 * <p/>
+	 * You may only call this method one time per battle. A {@code null}
+	 * indicates the default (blue) color for the body, radar and scan arc.
+	 * <p/>
+	 * 
+	 * <pre>
+	 * Example:
+	 *   // Don't forget to import java.awt.Color at the top...
+	 *   import java.awt.Color;
+	 *   ...
+	 * 
+	 *   public void runACI() {
+	 *       setAllColors(Color.RED);
+	 *       ...
+	 *   }
+	 * </pre>
+	 *
+	 * @param color
+	 *            the new color for all the colors of the Van.
+	 * @see #setBodyColor(Color)
+	 * @see #setRadarColor(Color)
+	 * @see #setScanColor(Color)
+	 * @see Color
+	 */
 	public final void setAllColors(Color color) {
-		throw new UnsupportedOperationException(getRandomWarningMessage());
+		setBodyColor(color);
+		setRadarColor(color);
+		setScanColor(color);
 	}
 
+	/**
+	 * Van does not fire bullets.
+	 */
 	@Override
 	@Deprecated
 	public final void setBulletColor(Color color) {
@@ -538,7 +693,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	}
 
 	/**
-	 * Van does not have gun. It can not set the gun color.
+	 * Van does not have a Gun.
 	 */
 	@Override
 	@Deprecated
@@ -547,6 +702,14 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
+	/**
+	 * Van does not have a Gun.
+	 */
+	public final void setColors(Color bodyColor, Color gunColor,
+			Color radarColor, Color bulletColor, Color scanArcColor) {
+		throw new UnsupportedOperationException(getRandomWarningMessage());
+	};
+
 	@Override
 	@Deprecated
 	public final void setDebugProperty(String key, String value) {
@@ -554,7 +717,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	}
 
 	/**
-	 * Van does not have gun. It can not set the gun color.
+	 * Van does not have a Gun.
 	 */
 	@Override
 	@Deprecated
@@ -562,6 +725,9 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
+	/**
+	 * Van does not have a Gun.
+	 */
 	@Override
 	@Deprecated
 	public final void setGunImageName(String newGunImageName) {
@@ -587,7 +753,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	}
 
 	/**
-	 * Van does not have gun. It can not turn the gun left.
+	 * Van does not have a Gun.
 	 */
 	@Override
 	public final void turnGunLeft(double degrees) {
@@ -595,7 +761,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	}
 
 	/**
-	 * Van does not have gun. It can not turn the gun right.
+	 * Van does not have a Gun.
 	 */
 	@Override
 	public final void turnGunRight(double degrees) {
