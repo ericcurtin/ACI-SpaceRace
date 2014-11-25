@@ -11,6 +11,7 @@ import foobar.hippy.van.booster.SpeedBooster;
 import foobar.hippy.van.coolingsystem.AbstractCoolingSystem;
 import foobar.hippy.van.engine.Engine;
 import robocode.Bullet;
+import robocode.Event;
 import robocode.HitRobotEvent;
 import robocode.ScannedRobotEvent;
 
@@ -185,6 +186,20 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		System.out.println("You can only add fuel at the start of the race");
 	}
 
+	/**
+	 * Old method that is called when your Van collides with a robot.
+	 * 
+	 * @deprecated Use one of the following methods instead:
+	 *             <p/>
+	 *             {@link AbstractVan#onHitAnimal(HitRobotEvent) onHitAnimal()}
+	 *             <p/>
+	 *             {@link AbstractVan#onHitStone(HitRobotEvent) onHitStone()}
+	 *             <p/>
+	 *             {@link AbstractVan#onHitTreasure(HitRobotEvent)
+	 *             onHitTreasure()}
+	 *             <p/>
+	 *             {@link AbstractVan#onHitVan(HitRobotEvent) onHitVan()}
+	 */
 	@Override
 	@Deprecated
 	public void onHitRobot(HitRobotEvent event) {
@@ -204,6 +219,36 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	/**
 	 * This method is called when your Van collides with an Animal. You should
 	 * override it in your Van if you want to be informed of this event.
+	 * <p/>
+	 * Example:
+	 * 
+	 * <pre>
+	 * void onHitAnimal(HitRobotEvent event) {
+	 * 	if (event.getBearing() &gt; -90 &amp;&amp; event.getBearing() &lt;= 90) {
+	 * 		//
+	 * 		// Move back.
+	 * 		//
+	 * 		turnLeft(180);
+	 * 		accelerate();
+	 * 	} else {
+	 * 		accelerate();
+	 * 	}
+	 * }
+	 * </pre>
+	 * <p/>
+	 * The angle is relative to your Van's facing. So 0 is straight ahead of
+	 * you.
+	 * <p/>
+	 * This event can be generated if another Animal hits you, in which case
+	 * {@link HitRobotEvent#isMyFault() event.isMyFault()} will return
+	 * {@code false}. In this case, you will not be automatically stopped by the
+	 * game -- but if you continue moving toward the Animal you will hit it (and
+	 * generate another event). If you are moving away, then you won't hit it.
+	 *
+	 * @param event
+	 *            the hit-Animal event set by the game
+	 * @see HitRobotEvent
+	 * @see Event
 	 */
 	public void onHitAnimal(HitRobotEvent event) {
 		//
@@ -214,6 +259,30 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	/**
 	 * This method is called when your Van collides with a Stone. You should
 	 * override it in your Van if you want to be informed of this event.
+	 * <p/>
+	 * Example:
+	 * 
+	 * <pre>
+	 * void onHitStone(HitRobotEvent event) {
+	 * 	if (event.getBearing() &gt; -90 &amp;&amp; event.getBearing() &lt;= 90) {
+	 * 		//
+	 * 		// Move back.
+	 * 		//
+	 * 		turnLeft(180);
+	 * 		accelerate();
+	 * 	} else {
+	 * 		accelerate();
+	 * 	}
+	 * }
+	 * </pre>
+	 * 
+	 * The angle is relative to your Van's facing. So 0 is straight ahead of
+	 * you.
+	 * 
+	 * @param event
+	 *            the hit-Stone event set by the game
+	 * @see HitRobotEvent
+	 * @see Event
 	 */
 	public void onHitStone(HitRobotEvent event) {
 		//
@@ -224,6 +293,30 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	/**
 	 * This method is called when your Van collides with a Treasure. You should
 	 * override it in your Van if you want to be informed of this event.
+	 * <p/>
+	 * Example:
+	 * 
+	 * <pre>
+	 * void onHitTreasure(HitRobotEvent event) {
+	 * 	if (event.getBearing() &gt; -90 &amp;&amp; event.getBearing() &lt;= 90) {
+	 * 		//
+	 * 		// Move back.
+	 * 		//
+	 * 		turnLeft(180);
+	 * 		accelerate();
+	 * 	} else {
+	 * 		accelerate();
+	 * 	}
+	 * }
+	 * </pre>
+	 * <p/>
+	 * The angle is relative to your Van's facing. So 0 is straight ahead of
+	 * you.
+	 *
+	 * @param event
+	 *            the hit-Treasure event set by the game
+	 * @see HitRobotEvent
+	 * @see Event
 	 */
 	public void onHitTreasure(HitRobotEvent event) {
 		//
@@ -234,6 +327,36 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	/**
 	 * This method is called when your Van collides with a Van. You should
 	 * override it in your Van if you want to be informed of this event.
+	 * <p/>
+	 * Example:
+	 * 
+	 * <pre>
+	 * void onHitVan(HitRobotEvent event) {
+	 * 	if (event.getBearing() &gt; -90 &amp;&amp; event.getBearing() &lt;= 90) {
+	 * 		//
+	 * 		// Move back.
+	 * 		//
+	 * 		turnLeft(180);
+	 * 		accelerate();
+	 * 	} else {
+	 * 		accelerate();
+	 * 	}
+	 * }
+	 * </pre>
+	 * <p/>
+	 * The angle is relative to your Van's facing. So 0 is straight ahead of
+	 * you.
+	 * <p/>
+	 * This event can be generated if another Van hits you, in which case
+	 * {@link HitRobotEvent#isMyFault() event.isMyFault()} will return
+	 * {@code false}. In this case, you will not be automatically stopped by the
+	 * game -- but if you continue moving toward the Van you will hit it (and
+	 * generate another event). If you are moving away, then you won't hit it.
+	 *
+	 * @param event
+	 *            the hit-Van event set by the game
+	 * @see HitRobotEvent
+	 * @see Event
 	 */
 	public void onHitVan(HitRobotEvent event) {
 		//
@@ -492,6 +615,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
+	@Override
 	@Deprecated
 	public final double getBattleFieldWidth() {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
@@ -677,6 +801,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 * @see #setScanColor(Color)
 	 * @see Color
 	 */
+	@Override
 	public final void setAllColors(Color color) {
 		setBodyColor(color);
 		setRadarColor(color);
@@ -705,6 +830,8 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	/**
 	 * Van does not have a Gun.
 	 */
+	@Override
+	@Deprecated
 	public final void setColors(Color bodyColor, Color gunColor,
 			Color radarColor, Color bulletColor, Color scanArcColor) {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
@@ -756,6 +883,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 * Van does not have a Gun.
 	 */
 	@Override
+	@Deprecated
 	public final void turnGunLeft(double degrees) {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
@@ -764,6 +892,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 * Van does not have a Gun.
 	 */
 	@Override
+	@Deprecated
 	public final void turnGunRight(double degrees) {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
