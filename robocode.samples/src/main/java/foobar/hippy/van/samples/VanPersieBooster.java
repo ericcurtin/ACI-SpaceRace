@@ -36,7 +36,7 @@ public class VanPersieBooster extends AbstractVan {
 		//
 		// Use the booster before the main loop.
 		//
-		if (!isBoosterUsed()) {
+		if (!isVanBoosterUsed()) {
 			useBooster();
 		}
 

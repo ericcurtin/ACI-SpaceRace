@@ -82,7 +82,7 @@ public class VanPersie extends AbstractVan {
 			//
 			// Accelerate the Van if it not overheated.
 			//
-			if (!isOverheated()) {
+			if (!isVanOverheated()) {
 				accelerate();
 
 				//

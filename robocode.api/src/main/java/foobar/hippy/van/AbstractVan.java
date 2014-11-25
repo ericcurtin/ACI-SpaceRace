@@ -11,6 +11,7 @@ import foobar.hippy.van.booster.SpeedBooster;
 import foobar.hippy.van.coolingsystem.AbstractCoolingSystem;
 import foobar.hippy.van.engine.Engine;
 import robocode.Bullet;
+import robocode.HitRobotEvent;
 import robocode.ScannedRobotEvent;
 
 /**
@@ -89,16 +90,14 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 * This method checks if the name of the Van is valid. If it contains
 	 * 'stone', 'animal' or 'treasure' then it is not valid.
 	 */
-	public final void checkVanName() {
+	private final void checkVanName() {
 		if (super.isStone(getName())) {
 			throw new UnsupportedOperationException(
 					"You are not a stone, please change your spaceship class name");
-		}
-		if (super.isAnimal(getName())) {
+		} else if (super.isAnimal(getName())) {
 			throw new UnsupportedOperationException(
 					"You are not an animal, please change your spaceship class name");
-		}
-		if (super.isTreasure(getName())) {
+		} else if (super.isTreasure(getName())) {
 			throw new UnsupportedOperationException(
 					"You are not a treasure, please change your spaceship class name");
 		}
@@ -124,6 +123,55 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 			return;
 		}
 		System.out.println("You can only add fuel at the start of the race");
+	}
+
+	@Override
+	@Deprecated
+	public void onHitRobot(HitRobotEvent event) {
+		String scannedRobotName = event.getName();
+
+		if (super.isAnimal(scannedRobotName)) {
+			onHitAnimal(event);
+		} else if (super.isStone(scannedRobotName)) {
+			onHitStone(event);
+		} else if (super.isTreasure(scannedRobotName)) {
+			onHitTreasure(event);
+		} else {
+			onHitVan(event);
+		}
+	}
+
+	/**
+	 * This method is called when your robot collides with an Animal. You should
+	 * override it in your robot if you want to be informed of this event.
+	 */
+	public void onHitAnimal(HitRobotEvent event) {
+		// Do nothing. It's up to the developer to override this method.
+	}
+
+	/**
+	 * This method is called when your robot collides with a Stone. You should
+	 * override it in your robot if you want to be informed of this event.
+	 */
+	public void onHitStone(HitRobotEvent event) {
+		// Do nothing. It's up to the developer to override this method.
+	}
+
+	/**
+	 * This method is called when your robot collides with a Treasure. You
+	 * should override it in your robot if you want to be informed of this
+	 * event.
+	 */
+	public void onHitTreasure(HitRobotEvent event) {
+		// Do nothing. It's up to the developer to override this method.
+	}
+
+	/**
+	 * This method is called when your robot collides with a Van. You should
+	 * override it in your robot if you want to be informed of this event.
+	 */
+	public void onHitVan(HitRobotEvent event) {
+		// Do nothing. It's up to the developer to override this method.
 	}
 
 	/**
@@ -208,33 +256,19 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	}
 
 	/**
+	 * This method checks if the Van SpeedBooster has been used.
+	 */
+	protected boolean isVanBoosterUsed() {
+		return isBoosterUsed;
+	}
+
+	/**
 	 * Checks if the spaceship is currently overheated.
 	 * 
 	 * @return true if it is overheated, false if it isn't
 	 */
-	protected boolean isOverheated() {
+	protected boolean isVanOverheated() {
 		return getTemperature() >= Engine.OVERHEAT_TEMPERATURE;
-	}
-
-	/**
-	 * This method uses the Van SpeedBooster. It doubles its speed for the next
-	 * 50 accelerate calls.
-	 */
-	protected void useBooster() {
-		if (!isBoosterUsed()) {
-			engine.setBooster(new SpeedBooster());
-			isBoosterUsed = true;
-		} else {
-			throw new UnsupportedOperationException(
-					"So you wanted to use a booster twice right? You can not do it.");
-		}
-	}
-
-	/**
-	 * This method checks if the Van SpeedBooster has been used.
-	 */
-	protected boolean isBoosterUsed() {
-		return isBoosterUsed;
 	}
 
 	/**
@@ -295,6 +329,20 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		}
 		engine.stop();
 		super.turnRadarRight(degrees);
+	}
+
+	/**
+	 * This method uses the Van SpeedBooster. It doubles its speed for the next
+	 * 50 accelerate calls.
+	 */
+	protected void useBooster() {
+		if (!isVanBoosterUsed()) {
+			engine.setBooster(new SpeedBooster());
+			isBoosterUsed = true;
+		} else {
+			throw new UnsupportedOperationException(
+					"So you wanted to use a booster twice right? You can not do it.");
+		}
 	}
 
 	@Override
