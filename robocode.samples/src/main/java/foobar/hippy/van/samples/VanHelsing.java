@@ -156,9 +156,9 @@ public class VanHelsing extends AbstractVan {
 	@Override
 	public void onScannedVan(ScannedRobotEvent event) {
 		//
-		// If there is a Van heading at the right of the screen.
+		// If there is a Van at the right.
 		//
-		if (VanNavigator.isHeadingRight(event.getHeading())) {
+		if (VanNavigator.isRight(event.getBearing())) {
 
 			//
 			// Do an amazing movement once to impress the Van.
