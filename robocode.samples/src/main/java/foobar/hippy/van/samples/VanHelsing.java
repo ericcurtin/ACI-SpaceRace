@@ -10,6 +10,31 @@ import foobar.hippy.van.coolingsystem.Fan;
 import foobar.hippy.van.fuel.CheapPetrol;
 import foobar.hippy.van.navigator.VanNavigator;
 
+/**
+ * This is a Van that has some basic logic:
+ * <p/>
+ * - It has a very basic Fuel system (it only uses CheapPetrol).
+ * <p/>
+ * - It uses a Fan as a Cooling system.
+ * <p/>
+ * - It overrides the basic scanning events and takes wise decisions on each of
+ * them ( onScannedAnimal, onScannedStone, onScannedTreasure, onScannedVan).
+ * <p/>
+ * - It overrides the optional method onHitTreasure, so it does something when
+ * it collides with a Treasure (the same could be done for Animal / Stone /
+ * Van).
+ * <p/>
+ * - It shows real-time information in the Van's console using the variable
+ * 'out'.
+ * <p/>
+ * - It uses the helper class VanNavigator that give information about the
+ * position of the enemies. Using VanNavigator class is absolutely optional,
+ * there is no need to use it although if it is well implemented it can help to
+ * create accurate Vans.
+ * 
+ * @author rodriguezp
+ *
+ */
 public class VanHelsing extends AbstractVan {
 	//
 	// Class variables.
