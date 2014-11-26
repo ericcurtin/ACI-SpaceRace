@@ -102,7 +102,7 @@ public class VanHelsing extends AbstractVan {
 			//
 			// If there is a stone in front we will turn to avoid it.
 			//
-			if (VanNavigator.isInFront(event.getBearing())) {
+			if (VanNavigator.isAheadPrecision(event.getBearing())) {
 				//
 				// The Van will turn at the right or at the left randomly.
 				//
