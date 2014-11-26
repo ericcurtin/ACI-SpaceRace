@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Random;
 
 import foobar.hippy.AbstractHippyRobot;
-import foobar.hippy.van.booster.SpeedBooster;
 import foobar.hippy.van.coolingsystem.AbstractCoolingSystem;
 import foobar.hippy.van.engine.Engine;
 import robocode.Bullet;
@@ -34,11 +33,6 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 * It defines if the Van's fuel has been filled.
 	 */
 	private boolean isFuelFilled = false;
-
-	/**
-	 * It defines if the Van's booster has been used.
-	 */
-	private boolean isBoosterUsed = false;
 
 	/**
 	 * It defines a Map< Integer id, String message > with funny messages that
@@ -477,16 +471,6 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	}
 
 	/**
-	 * Checks if the Van's booster has been used.
-	 * 
-	 * @return true if the Van's booster has been used has been used, false
-	 *         otherwise.
-	 */
-	protected boolean isVanBoosterUsed() {
-		return isBoosterUsed;
-	}
-
-	/**
 	 * Checks if the Van's engine is currently overheated.
 	 * 
 	 * @return true if the engine is overheated, false otherwise.
@@ -552,20 +536,6 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 		}
 		engine.stop();
 		super.turnRadarRight(degrees);
-	}
-
-	/**
-	 * This method uses the Van 's booster. It doubles its speed for the next 50
-	 * accelerate calls.
-	 */
-	protected void useBooster() {
-		if (!isVanBoosterUsed()) {
-			engine.setBooster(new SpeedBooster());
-			isBoosterUsed = true;
-		} else {
-			throw new UnsupportedOperationException(
-					"So you wanted to use a booster twice right? You can not do it.");
-		}
 	}
 
 	/**
