@@ -50,6 +50,7 @@ public class VanBasten extends AbstractVan {
 		//
 		setBodyColor(Color.BLACK);
 		setRadarColor(Color.RED);
+		setScanColor(Color.BLACK);
 
 		//
 		// Main loop.

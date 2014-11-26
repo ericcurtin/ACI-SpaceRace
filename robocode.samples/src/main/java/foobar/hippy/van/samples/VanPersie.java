@@ -73,6 +73,7 @@ public class VanPersie extends AbstractVan {
 		//
 		setBodyColor(Color.RED);
 		setRadarColor(Color.WHITE);
+		setScanColor(Color.RED);
 
 		//
 		// Main loop.

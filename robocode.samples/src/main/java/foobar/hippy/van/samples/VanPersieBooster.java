@@ -1,4 +1,7 @@
 package foobar.hippy.van.samples;
+
+import java.awt.Color;
+
 import foobar.hippy.van.AbstractVan;
 import foobar.hippy.van.coolingsystem.Fan;
 import foobar.hippy.van.fuel.CheapPetrol;
@@ -25,8 +28,11 @@ public class VanPersieBooster extends AbstractVan {
 	@Override
 	public void runACI() {
 		//
+		// Set Van colors (optional).
 		//
-		//
+		setBodyColor(Color.RED);
+		setRadarColor(Color.WHITE);
+		setScanColor(Color.WHITE);
 
 		//
 		// Set the Cooling System of the Van.

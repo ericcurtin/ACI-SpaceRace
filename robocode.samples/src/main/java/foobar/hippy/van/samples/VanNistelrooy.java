@@ -67,8 +67,7 @@ public class VanNistelrooy extends AbstractVan {
 		//
 		// Set Van colors (optional).
 		//
-		setBodyColor(Color.WHITE);
-		setRadarColor(Color.blue);
+		setAllColors(Color.WHITE);
 
 		//
 		// Main loop.

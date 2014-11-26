@@ -3,6 +3,7 @@ package foobar.hippy.van.samples;
 import java.awt.Color;
 import java.util.Random;
 
+import robocode.HitRobotEvent;
 import robocode.ScannedRobotEvent;
 import foobar.hippy.van.AbstractVan;
 import foobar.hippy.van.coolingsystem.Fan;
@@ -11,9 +12,10 @@ import foobar.hippy.van.navigator.VanNavigator;
 
 public class VanHelsing extends AbstractVan {
 	//
-	// Class members.
+	// Class variables.
 	//
 	int amazingMovementCount;
+	boolean victoryDanceDone = false;;
 
 	public VanHelsing() {
 		//
@@ -34,13 +36,14 @@ public class VanHelsing extends AbstractVan {
 		//
 		setBodyColor(Color.BLACK);
 		setRadarColor(Color.WHITE);
+		setScanColor(Color.RED);
 
 		//
-		//
 		// Main loop.
+		//
 		while (true) {
 			//
-			// Move forward 100 turns
+			// Move forward 100 turns.
 			//
 			for (int i = 0; i < 100; i++) {
 				accelerate();
@@ -57,12 +60,12 @@ public class VanHelsing extends AbstractVan {
 		//
 		// Print some of the event properties on the Van's console.
 		//
-		System.out.println("VanHelsing.onScannedAnimal()");
-		System.out.println("Animal name:" + event.getName());
-		System.out.println("Animal heading:" + event.getHeading());
-		System.out.println("Animal bearing:" + event.getBearing());
-		System.out.println("Animal distance:" + event.getDistance());
-		System.out.println("");
+		out.println("VanHelsing.onScannedAnimal()");
+		out.println("Animal name:" + event.getName());
+		out.println("Animal heading:" + event.getHeading());
+		out.println("Animal bearing:" + event.getBearing());
+		out.println("Animal distance:" + event.getDistance());
+		out.println("");
 	}
 
 	@Override
@@ -80,9 +83,9 @@ public class VanHelsing extends AbstractVan {
 				//
 				if (new Random().nextBoolean()) {
 					//
-					// Turn Right 90 degrees (Heading Down)
-					// Accelerate 118 turns
-					// Turn Left 90 degrees (Heading Right)
+					// Turn Right 90 degrees (Heading Down).
+					// Accelerate 118 turns.
+					// Turn Left 90 degrees (Heading Right).
 					//
 					turnRight(90);
 					for (int i = 0; i < 118; i++) {
@@ -91,9 +94,9 @@ public class VanHelsing extends AbstractVan {
 					turnLeft(90);
 				} else {
 					//
-					// Turn Left 90 degrees (Heading Up)
-					// Accelerate 118 turns
-					// Turn Right 90 degrees (Heading Right)
+					// Turn Left 90 degrees (Heading Up).
+					// Accelerate 118 turns.
+					// Turn Right 90 degrees (Heading Right).
 					//
 					turnLeft(90);
 					for (int i = 0; i < 118; i++) {
@@ -108,16 +111,16 @@ public class VanHelsing extends AbstractVan {
 	@Override
 	public void onScannedTreasure(ScannedRobotEvent event) {
 		//
-		// Do something if it is reasonably close
+		// Do something if it is reasonably close.
 		//
 		if (event.getDistance() < 300) {
 			//
-			// Turn the Van to face the Treasure
+			// Turn the Van to face the Treasure.
 			//
 			turnRight(event.getBearing());
 
 			//
-			// Move forward 111 turns
+			// Move forward 111 turns.
 			//
 			for (int i = 0; i < 111; i++) {
 				accelerate();
@@ -140,6 +143,52 @@ public class VanHelsing extends AbstractVan {
 				amazingMovementCount++;
 			}
 		}
+	}
+
+	//
+	// This method override onHitTreasure so the Van will do a Winning Dance.
+	//
+	// There are four optional methods that can be overriden:
+	// - onHitAnimal
+	// - onHitStone
+	// - onHitTreasure
+	// - onHitVan
+	//
+	// so the Van can execute some action when it hits something.
+	//
+	@Override
+	public void onHitTreasure(HitRobotEvent event) {
+		//
+		// If we hit the Treasure first then we win the race.
+		//
+		if (!victoryDanceDone) {
+			doVictoryDance();
+			victoryDanceDone = true;
+		}
+	}
+
+	/**
+	 * Victory dance
+	 */
+	private void doVictoryDance() {
+		//
+		// Go back 22 movements.
+		//
+		turnLeft(180);
+
+		for (int i = 0; i < 22; i++) {
+			accelerate();
+		}
+
+		//
+		// Spin Radar 5 times.
+		//
+		turnRadarLeft(360.0 * 5);
+
+		//
+		// Head the Treasure again.
+		//
+		turnRight(180);
 	}
 
 	/**
