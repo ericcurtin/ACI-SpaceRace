@@ -244,11 +244,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 * @see HitRobotEvent
 	 * @see Event
 	 */
-	public void onHitAnimal(HitRobotEvent event) {
-		//
-		// Do nothing. It's up to the developer to override this method.
-		//
-	}
+	 public abstract void onHitAnimal(HitRobotEvent event);
 
 	/**
 	 * This method is called when your Van collides with a Stone. You should
@@ -278,11 +274,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 * @see HitRobotEvent
 	 * @see Event
 	 */
-	public void onHitStone(HitRobotEvent event) {
-		//
-		// Do nothing. It's up to the developer to override this method.
-		//
-	}
+	 public abstract void onHitStone(HitRobotEvent event);
 
 	/**
 	 * This method is called when your Van collides with a Treasure. You should
@@ -312,11 +304,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 * @see HitRobotEvent
 	 * @see Event
 	 */
-	public void onHitTreasure(HitRobotEvent event) {
-		//
-		// Do nothing. It's up to the developer to override this method.
-		//
-	}
+	public abstract void onHitTreasure(HitRobotEvent event);
 
 	/**
 	 * This method is called when your Van collides with a Van. You should
@@ -352,11 +340,7 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	 * @see HitRobotEvent
 	 * @see Event
 	 */
-	public void onHitVan(HitRobotEvent event) {
-		//
-		// Do nothing. It's up to the developer to override this method.
-		//
-	}
+	public abstract void onHitVan(HitRobotEvent event);
 
 	/**
 	 * The main method in every Van. You must override this to set up your Van's
