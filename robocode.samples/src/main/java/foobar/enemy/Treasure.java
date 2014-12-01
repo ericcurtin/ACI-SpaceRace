@@ -1,5 +1,7 @@
 package foobar.enemy;
 
+import java.awt.Color;
+
 import foobar.hippy.AbstractHippyRobot;
 import robocode.HitRobotEvent;
 
@@ -13,6 +15,11 @@ import robocode.HitRobotEvent;
 public final class Treasure extends AbstractHippyRobot {
 
 	private boolean winner = false;
+
+	@Override
+	public void run() {
+		setAllColors(new Color(122, 82, 48));
+	}
 
 	@Override
 	public void onHitRobot(HitRobotEvent event) {

@@ -1,5 +1,7 @@
 package foobar.enemy;
 
+import java.awt.Color;
+
 import foobar.hippy.AbstractHippyRobot;
 
 /**
@@ -9,5 +11,10 @@ import foobar.hippy.AbstractHippyRobot;
  * @author Pablo Rodriguez (original)
  */
 public final class Stone extends AbstractHippyRobot {
+
+	@Override
+	public void run() {
+		setAllColors(Color.DARK_GRAY);
+	}
 
 }

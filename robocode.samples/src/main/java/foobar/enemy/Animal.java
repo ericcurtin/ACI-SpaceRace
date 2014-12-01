@@ -1,5 +1,7 @@
 package foobar.enemy;
 
+import java.awt.Color;
+
 import robocode.HitRobotEvent;
 import robocode.RobotDeathEvent;
 import robocode.ScannedRobotEvent;
@@ -17,6 +19,9 @@ public final class Animal extends AbstractHippyRobot {
 
 	@Override
 	public void run() {
+
+		setAllColors(Color.BLUE);
+
 		while (true) {
 			turnRadarLeft(360);
 		}
@@ -50,12 +55,15 @@ public final class Animal extends AbstractHippyRobot {
 			//
 			// Chase
 			//
-			ahead(3);
+			ahead(8);
 
 			//
-			// Fire
+			// Fire only if they are really close, so the Animal will always
+			// kill the Van
 			//
-			fire(2.5);
+			if (event.getDistance() < 45) {
+				fire(3.0);
+			}
 		}
 	}
 
