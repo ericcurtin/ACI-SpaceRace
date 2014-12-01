@@ -7,6 +7,7 @@ import foobar.hippy.van.coolingsystem.Fan;
 import foobar.hippy.van.fuel.CheapPetrol;
 import foobar.hippy.van.fuel.RacingPetrol;
 import foobar.hippy.van.fuel.ExpensivePetrol;
+import robocode.HitRobotEvent;
 import robocode.ScannedRobotEvent;
 
 /**
@@ -135,6 +136,22 @@ public class VanPersie extends AbstractVan {
 		// I wish this was onScannedTeamMate. I don't know how to manage this
 		// method.
 		//
+	}
+
+	@Override
+	public void onHitAnimal(HitRobotEvent event) {
+	}
+
+	@Override
+	public void onHitStone(HitRobotEvent event) {
+	}
+
+	@Override
+	public void onHitTreasure(HitRobotEvent event) {
+	}
+
+	@Override
+	public void onHitVan(HitRobotEvent event) {
 	}
 
 }

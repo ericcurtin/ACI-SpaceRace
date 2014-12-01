@@ -1,7 +1,7 @@
 package foobar.hippy.van.fuel;
 
 /**
- * Petrol is a fuel.
+ * ExpensivePetrol is a fuel.
  * 
  * @author Eric Curtin (original)
  */

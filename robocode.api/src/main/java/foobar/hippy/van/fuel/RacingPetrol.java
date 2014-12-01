@@ -1,7 +1,7 @@
 package foobar.hippy.van.fuel;
 
 /**
- * Hydrogen is a fuel.
+ * RacingPetrol is a fuel.
  * 
  * @author Eric Curtin (original)
  */

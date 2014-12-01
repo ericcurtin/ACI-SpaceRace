@@ -1,7 +1,7 @@
 package foobar.hippy.van.fuel;
 
 /**
- * Coal is a fuel.
+ * CheapPetrol is a fuel.
  * 
  * @author Eric Curtin (original)
  */

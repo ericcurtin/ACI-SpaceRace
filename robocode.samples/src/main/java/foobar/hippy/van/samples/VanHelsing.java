@@ -238,4 +238,16 @@ public class VanHelsing extends AbstractVan {
 		addFuel(CheapPetrol.name, 5000);
 	}
 
+	@Override
+	public void onHitAnimal(HitRobotEvent event) {
+	}
+
+	@Override
+	public void onHitStone(HitRobotEvent event) {
+	}
+
+	@Override
+	public void onHitVan(HitRobotEvent event) {
+	}
+
 }

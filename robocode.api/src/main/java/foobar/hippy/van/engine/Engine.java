@@ -8,7 +8,7 @@ import foobar.hippy.van.fuel.IFuel;
 import foobar.hippy.van.fuel.ExpensivePetrol;
 
 /**
- * SpaceEngine consists of many different parts.
+ * Engine consists of many different parts.
  * 
  * @author Eric Curtin (original)
  * @author Pablo Rodriguez (contributor)
@@ -23,7 +23,7 @@ public class Engine {
 	private AbstractCoolingSystem coolingSystem;
 
 	/**
-	 * The temperature at which the space engine overheats.
+	 * The temperature at which the engine overheats.
 	 */
 	public final static double OVERHEAT_TEMPERATURE = 1500.0;
 
@@ -71,21 +71,21 @@ public class Engine {
 	}
 
 	/**
-	 * @return the current speed of the space engine.
+	 * @return the current speed of the engine.
 	 */
 	public double getSpeed() {
 		return speed;
 	}
 
 	/**
-	 * @return the current volume of the space engine.
+	 * @return the current volume of the engine.
 	 */
 	public double getVolume() {
 		return fuel.getVolume();
 	}
 
 	/**
-	 * @return the current temperature of the space engine.
+	 * @return the current temperature of the engine.
 	 */
 	public double getTemperature() {
 		return temperature;
@@ -99,7 +99,7 @@ public class Engine {
 	}
 
 	/**
-	 * Add fuel to the space engine.
+	 * Add fuel to the can.
 	 */
 	public void addFuel(String fuelName, double volume) {
 		try {
@@ -119,7 +119,7 @@ public class Engine {
 	}
 
 	/**
-	 * @return details of the spaceship's current status
+	 * @return details of the van's current status
 	 */
 	public String currentDetails() {
 		String currentDetails = "Volume is " + getVolume()
@@ -131,9 +131,9 @@ public class Engine {
 	}
 
 	/**
-	 * Check's if the space engine is currently overheated.
+	 * Check's if the engine is currently overheated.
 	 * 
-	 * @return true if the space engine if overheated, false if it isn't
+	 * @return true if the engine if overheated, false if it isn't
 	 */
 	public boolean isOverheated() {
 		return temperature >= OVERHEAT_TEMPERATURE;
