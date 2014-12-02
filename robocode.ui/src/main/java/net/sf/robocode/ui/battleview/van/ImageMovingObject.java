@@ -1,4 +1,4 @@
-package net.sf.robocode.ui.battleview.spaceship;
+package net.sf.robocode.ui.battleview.van;
 
 import java.util.HashMap;
 import java.util.Map;

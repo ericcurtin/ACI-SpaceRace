@@ -6,8 +6,8 @@ package foobar.hippy.van.navigator;
  * Heading: Absolute angle in degrees with 0 facing up the screen, positive
  * clockwise. 0 <= heading < 360.
  * <p/>
- * Bearing: Relative angle to some object from your spaceship's heading,
- * positive clockwise. -180 < bearing <= 180.
+ * Bearing: Relative angle to some object from your Van's heading, positive
+ * clockwise. -180 < bearing <= 180.
  * <p/>
  * Using this class is absolutely optional, good Vans can be created without
  * using VanNavigator's methods.

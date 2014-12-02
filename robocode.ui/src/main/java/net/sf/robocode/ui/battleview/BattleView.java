@@ -16,7 +16,7 @@ import net.sf.robocode.ui.IImageManager;
 import net.sf.robocode.ui.IWindowManager;
 import net.sf.robocode.ui.IWindowManagerExt;
 import net.sf.robocode.ui.ImageManager;
-import net.sf.robocode.ui.battleview.spaceship.ImageMovingObject;
+import net.sf.robocode.ui.battleview.van.ImageMovingObject;
 import net.sf.robocode.ui.gfx.GraphicsState;
 import net.sf.robocode.ui.gfx.RenderImage;
 import net.sf.robocode.ui.gfx.RobocodeLogo;

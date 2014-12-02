@@ -68,7 +68,7 @@ public abstract class FuelDecorator implements IFuel {
 	}
 
 	/**
-	 * @return the current temperature of the SpaceShip
+	 * @return the current temperature of the Van
 	 */
 	public double getTemperature() {
 		return totalTemperature;

@@ -8,7 +8,7 @@ package foobar.hippy.van.fuel;
 public interface IFuel {
 
 	/**
-	 * @return the max speed a spaceship can travel at currently
+	 * @return the max speed a Van can travel at currently
 	 */
 	double getPower();
 
