@@ -8,7 +8,7 @@ import robocode.ScannedRobotEvent;
 import foobar.hippy.van.AbstractVan;
 import foobar.hippy.van.coolingsystem.Fan;
 import foobar.hippy.van.fuel.CheapPetrol;
-import foobar.hippy.van.navigator.VanNavigator;
+import foobar.hippy.van.samples.navigator.VanNavigatorDemo;
 
 /**
  * This is a Van that has some basic logic:
@@ -102,7 +102,7 @@ public class VanHelsing extends AbstractVan {
 			//
 			// If there is a stone in front we will turn to avoid it.
 			//
-			if (VanNavigator.isBearingForward(event.getBearing())) {
+			if (VanNavigatorDemo.isBearingForward(event.getBearing())) {
 				//
 				// The Van will turn at the right or at the left randomly.
 				//
@@ -158,7 +158,7 @@ public class VanHelsing extends AbstractVan {
 		//
 		// If there is a Van at the right.
 		//
-		if (VanNavigator.isBearingRight(event.getBearing())) {
+		if (VanNavigatorDemo.isBearingRight(event.getBearing())) {
 
 			//
 			// Do an amazing movement once to impress the Van.
