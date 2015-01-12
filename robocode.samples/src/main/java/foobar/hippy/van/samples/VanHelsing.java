@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.Random;
 
 import robocode.HitRobotEvent;
+import robocode.HitWallEvent;
 import robocode.ScannedRobotEvent;
 import foobar.hippy.van.AbstractVan;
 import foobar.hippy.van.coolingsystem.Fan;
@@ -240,14 +241,54 @@ public class VanHelsing extends AbstractVan {
 
 	@Override
 	public void onHitAnimal(HitRobotEvent event) {
+		//
+		// Hopefully we won't hit any animal, so overriding the method is not
+		// required.
+		//
 	}
 
 	@Override
 	public void onHitStone(HitRobotEvent event) {
+		//
+		// Hopefully we won't hit any stone, so overriding the method is not
+		// required.
+		//
 	}
 
 	@Override
 	public void onHitVan(HitRobotEvent event) {
+		//
+		// If it is my fault, then go back 22 turns
+		//
+		if (event.isMyFault()) {
+			//
+			// Turn back.
+			//
+			turnLeft(180);
+
+			//
+			// Move for 22 turns.
+			//
+			for (int i = 0; i < 22; i++) {
+				accelerate();
+			}
+
+			//
+			// Turn back again to the original heading.
+			//
+			turnLeft(180);
+		}
+		//
+		// Otherwise, continue the standard logic
+		//
+	}
+
+	@Override
+	public void onHitWall(HitWallEvent event) {
+		//
+		// Hopefully we won't hit any wall (that would mean we are doing
+		// something wrong!), so overriding the method is not required.
+		//
 	}
 
 }
