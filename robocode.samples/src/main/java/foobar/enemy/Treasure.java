@@ -16,9 +16,15 @@ public final class Treasure extends AbstractHippyRobot {
 
 	private boolean winner = false;
 
+	private int turnCounter = 0;
+
 	@Override
 	public void run() {
 		setAllColors(new Color(122, 82, 48));
+
+		while (true) {
+			turnCounter++;
+		}
 	}
 
 	@Override
@@ -31,6 +37,8 @@ public final class Treasure extends AbstractHippyRobot {
 			// Print the winner's name
 			//
 			System.out.println(event.getName() + " wins the race !!!");
+			System.out.println("( " + turnCounter + " )");
+
 			winner = true;
 
 			//
@@ -46,5 +54,4 @@ public final class Treasure extends AbstractHippyRobot {
 		}
 
 	}
-
 }

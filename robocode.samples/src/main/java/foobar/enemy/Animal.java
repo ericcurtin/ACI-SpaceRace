@@ -77,7 +77,7 @@ public final class Animal extends AbstractHippyRobot {
 			// Fire only if they are really close, so the Animal will always
 			// kill the Van
 			//
-			if (event.getDistance() < 45) {
+			if (event.getDistance() < 170) {
 				fire(3.0);
 			}
 		}
