@@ -40,8 +40,8 @@ public class VanHelsing extends AbstractVan {
 	//
 	// Class variables.
 	//
-	int amazingMovementCount;
-	boolean victoryDanceDone = false;;
+	private int amazingMovementCount;
+	private boolean victoryDanceDone = false;;
 
 	public VanHelsing() {
 		//
@@ -59,6 +59,7 @@ public class VanHelsing extends AbstractVan {
 	public void runACI() {
 		//
 		// Set Van colors (optional).
+		// Note: Do not set the colors in the constructor.
 		//
 		setBodyColor(Color.BLACK);
 		setRadarColor(Color.WHITE);
@@ -92,6 +93,11 @@ public class VanHelsing extends AbstractVan {
 		out.println("Animal bearing:" + event.getBearing());
 		out.println("Animal distance:" + event.getDistance());
 		out.println("");
+
+		//
+		// TODO - Implement Animal logic.
+		// Hint: VanNavigator class could be useful.
+		//
 	}
 
 	@Override
@@ -131,27 +137,18 @@ public class VanHelsing extends AbstractVan {
 					turnRight(90);
 				}
 			}
+			//
+			// TODO - Improve the stone logic.
+			// Hint: VanNavigator class could be useful.
+			//
 		}
 	}
 
 	@Override
 	public void onScannedTreasure(ScannedRobotEvent event) {
 		//
-		// Do something if it is reasonably close.
+		// TODO - Implement Treasure logic.
 		//
-		if (event.getDistance() < 300) {
-			//
-			// Turn the Van to face the Treasure.
-			//
-			turnRight(event.getBearing());
-
-			//
-			// Move forward 111 turns.
-			//
-			for (int i = 0; i < 111; i++) {
-				accelerate();
-			}
-		}
 	}
 
 	@Override

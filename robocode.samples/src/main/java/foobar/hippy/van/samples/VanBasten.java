@@ -48,6 +48,7 @@ public class VanBasten extends AbstractVan {
 	public void runACI() {
 		//
 		// Set Van colors (optional).
+		// Note: Do not set the colors in the constructor.
 		//
 		setBodyColor(Color.BLACK);
 		setRadarColor(Color.RED);
@@ -93,9 +94,22 @@ public class VanBasten extends AbstractVan {
 	@Override
 	public void onScannedTreasure(ScannedRobotEvent event) {
 		//
-		// I wish this was onScannedBall. I don't know how to manage this
-		// method.
+		// I love treasures, let's go for it.
+		// Do something if the treasure is reasonably close.
 		//
+		if (event.getDistance() < 300) {
+			//
+			// Turn the Van to face the Treasure.
+			//
+			turnRight(event.getBearing());
+
+			//
+			// Move forward 111 turns.
+			//
+			for (int i = 0; i < 111; i++) {
+				accelerate();
+			}
+		}
 	}
 
 	@Override
