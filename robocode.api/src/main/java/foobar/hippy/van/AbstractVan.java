@@ -640,12 +640,6 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 
 	@Override
 	@Deprecated
-	public final double getHeight() {
-		throw new UnsupportedOperationException(getRandomWarningMessage());
-	}
-
-	@Override
-	@Deprecated
 	public final double getLife() {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
@@ -689,12 +683,6 @@ public abstract class AbstractVan extends AbstractHippyRobot {
 	@Override
 	@Deprecated
 	public final long getTime() {
-		throw new UnsupportedOperationException(getRandomWarningMessage());
-	}
-
-	@Override
-	@Deprecated
-	public final double getWidth() {
 		throw new UnsupportedOperationException(getRandomWarningMessage());
 	}
 
