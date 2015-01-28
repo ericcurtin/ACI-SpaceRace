@@ -58,10 +58,18 @@ public class VanBasten extends AbstractVan {
 		// Main loop.
 		//
 		while (true) {
+
 			//
-			// Accelerate the Van.
+			// Accelerate the Van 200 turns.
 			//
-			accelerate();
+			for (int i = 0; i < 200; i++) {
+				accelerate();
+			}
+
+			//
+			// Scan for the treasure.
+			//
+			turnRadarLeft(360);
 		}
 	}
 

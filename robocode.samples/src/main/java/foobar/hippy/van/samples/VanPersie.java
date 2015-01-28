@@ -83,17 +83,29 @@ public class VanPersie extends AbstractVan {
 		while (true) {
 
 			//
-			// Accelerate the Van if it not overheated.
+			// Accelerate the Van 200 turns.
 			//
-			if (!isVanOverheated()) {
-				accelerate();
+			for (int i = 0; i < 200; i++) {
 
 				//
-				// Stop the Van if it is overheated, so it can cool down.
+				// Accelerate the Van if it not overheated.
 				//
-			} else {
-				stop();
+				if (!isVanOverheated()) {
+					accelerate();
+
+					//
+					// Stop the Van if it is overheated, so it can cool down.
+					//
+				} else {
+					stop();
+				}
 			}
+
+			//
+			// Scan for the treasure.
+			//
+			turnRadarLeft(360);
+
 		}
 	}
 
