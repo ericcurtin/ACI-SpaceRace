@@ -18,15 +18,24 @@ public final class VanNavigatorDemo {
 	}
 
 	/*
+	 * HEADING HELPER METHODS: 0 <= getHeading() < 360
+	 */
+	/**
+	 * Returns if an enemy is heading right ( heading = 90 )
+	 */
+	public static boolean isHeadingRightPrecision(double heading) {
+		return (heading == 90.0d);
+	}
+
+	/*
 	 * BEARING HELPER METHODS: -180 <= getBearing() < 180
 	 */
 
 	/**
-	 * Returns if an object is forward ( wide range ) (-90 < bearing) &&
-	 * (bearing < 90)
+	 * Returns if an object is forward ( bearing = 0 )
 	 */
-	public static boolean isBearingForward(double bearing) {
-		return (-90.0d < bearing && bearing < 90.0d);
+	public static boolean isBearingForwardPrecision(double bearing) {
+		return (bearing == 0.0d);
 	}
 
 	/**

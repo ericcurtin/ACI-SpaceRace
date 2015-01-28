@@ -109,32 +109,75 @@ public class VanHelsing extends AbstractVan {
 			//
 			// If there is a stone in front we will turn to avoid it.
 			//
-			if (VanNavigatorDemo.isBearingForward(event.getBearing())) {
+			if (VanNavigatorDemo.isBearingForwardPrecision(event.getBearing())) {
 				//
 				// The Van will turn at the right or at the left randomly.
 				//
 				if (new Random().nextBoolean()) {
 					//
 					// Turn Right 90 degrees (Heading Down).
-					// Accelerate 118 turns.
-					// Turn Left 90 degrees (Heading Right).
+					// Accelerate 100 turns.
 					//
 					turnRight(90);
-					for (int i = 0; i < 118; i++) {
+					for (int i = 0; i < 100; i++) {
 						accelerate();
 					}
+
+					//
+					// Turn Left 90 degrees (Heading Right).
+					// Accelerate 200 turns.
+					//
 					turnLeft(90);
+					for (int i = 0; i < 200; i++) {
+						accelerate();
+					}
+
+					//
+					// Turn Right 90 degrees (Heading Up).
+					// Accelerate 100 turns.
+					//
+					turnLeft(90);
+					for (int i = 0; i < 100; i++) {
+						accelerate();
+					}
+
+					//
+					// Turn to the initial heading position.
+					//
+					turnRight(90);
+
 				} else {
 					//
 					// Turn Left 90 degrees (Heading Up).
-					// Accelerate 118 turns.
-					// Turn Right 90 degrees (Heading Right).
+					// Accelerate 100 turns.
 					//
 					turnLeft(90);
-					for (int i = 0; i < 118; i++) {
+					for (int i = 0; i < 100; i++) {
 						accelerate();
 					}
+
+					//
+					// Turn Right 90 degrees (Heading Right).
+					// Accelerate 200 turns.
+					//
 					turnRight(90);
+					for (int i = 0; i < 200; i++) {
+						accelerate();
+					}
+
+					//
+					// Turn Right 90 degrees (Heading Down).
+					// Accelerate 100 turns.
+					//
+					turnRight(90);
+					for (int i = 0; i < 100; i++) {
+						accelerate();
+					}
+
+					//
+					// Turn to the initial heading position.
+					//
+					turnLeft(90);
 				}
 			}
 			//
@@ -154,10 +197,11 @@ public class VanHelsing extends AbstractVan {
 	@Override
 	public void onScannedVan(ScannedRobotEvent event) {
 		//
-		// If there is a Van at the right.
+		// If there is a Van at the right and
+		// the Van is heading at the right
 		//
-		if (VanNavigatorDemo.isBearingRight(event.getBearing())) {
-
+		if (VanNavigatorDemo.isBearingRight(event.getBearing())
+				&& VanNavigatorDemo.isHeadingRightPrecision(event.getHeading())) {
 			//
 			// Do an amazing movement once to impress the Van.
 			//
@@ -204,14 +248,9 @@ public class VanHelsing extends AbstractVan {
 		}
 
 		//
-		// Spin Radar 5 times.
+		// Spin Radar 10 times.
 		//
-		turnRadarLeft(360.0 * 5);
-
-		//
-		// Head the Treasure again.
-		//
-		turnRight(180);
+		turnRadarLeft(360.0 * 10);
 	}
 
 	/**
