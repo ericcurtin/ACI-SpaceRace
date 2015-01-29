@@ -130,8 +130,20 @@ public class ImageManager implements IImageManager {
 		return image;
 	}
 
+	/**
+	 * Constructs a new {@code RenderImage} based on a path. The image should
+	 * contain the body of the robot.
+	 *
+	 * @param image
+	 *            the image to be rendered
+	 */
 	public RenderImage getColoredBodyRenderImagePath(Integer color, String path) {
-		// PABLO
+		//
+		// Don't get the image stored in the cache. There is only one body in
+		// the standard version of Robocode but we have more types of body.
+		// Having only one body type would render only one body type so all the
+		// different robots would look the same
+		//
 		// RenderImage img = robotBodyImageCache.get(color);
 
 		RenderImage img = null;

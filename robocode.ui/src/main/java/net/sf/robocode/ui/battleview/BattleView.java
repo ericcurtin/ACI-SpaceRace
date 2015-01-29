@@ -16,8 +16,7 @@ import net.sf.robocode.ui.IImageManager;
 import net.sf.robocode.ui.IWindowManager;
 import net.sf.robocode.ui.IWindowManagerExt;
 import net.sf.robocode.ui.ImageManager;
-import net.sf.robocode.ui.battleview.spaceship.ColorMovingObject;
-import net.sf.robocode.ui.battleview.spaceship.ImageMovingObject;
+import net.sf.robocode.ui.battleview.van.ImageMovingObject;
 import net.sf.robocode.ui.gfx.GraphicsState;
 import net.sf.robocode.ui.gfx.RenderImage;
 import net.sf.robocode.ui.gfx.RobocodeLogo;
@@ -36,8 +35,12 @@ import java.awt.event.ComponentEvent;
 import java.awt.geom.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+
 import static java.lang.Math.*;
+
 import java.util.Random;
+
+import foobar.hippy.AbstractHippyRobot;
 
 /**
  * @author Mathew A. Nelson (original)
@@ -407,12 +410,14 @@ public class BattleView extends Canvas {
 		g.setClip(savedClip);
 	}
 
+	//
+	// Scan arcs are only drawn for vans
+	//
 	private void drawScanArcs(Graphics2D g, ITurnSnapshot snapShot) {
 		if (drawScanArcs) {
 			for (IRobotSnapshot robotSnapshot : snapShot.getRobots()) {
 				if (robotSnapshot.getState().isAlive()) {
-					Color gunColor = new Color(robotSnapshot.getGunColor());
-					if (!ColorMovingObject.isAsteroid(gunColor)) {
+					if (AbstractHippyRobot.isVan(robotSnapshot.getName())) {
 						drawScanArc(g, robotSnapshot);
 					}
 				}
@@ -452,15 +457,20 @@ public class BattleView extends Canvas {
 
 				RenderImage robotRenderImage = null;
 
-				Color gunColor = new Color(robotSnapshot.getGunColor());
+				//
+				// If is one of the (project-specific) known robots then draw
+				// its body
+				//
 				if (imageManager instanceof ImageManager) {
 
 					robotRenderImage = ((ImageManager) imageManager)
-							.getColoredBodyRenderImagePath(
-									robotSnapshot.getBodyColor(),
-									ImageMovingObject.getBodyImage(gunColor));
+							.getColoredBodyRenderImagePath(robotSnapshot
+									.getBodyColor(), ImageMovingObject
+									.getBodyImage(robotSnapshot.getName()));
 				}
-
+				//
+				// Otherwise draw the default body
+				//
 				else {
 					robotRenderImage = imageManager
 							.getColoredBodyRenderImage(robotSnapshot
@@ -473,20 +483,25 @@ public class BattleView extends Canvas {
 				at = AffineTransform.getTranslateInstance(x, y);
 				at.rotate(robotSnapshot.getGunHeading());
 
-				if (!ColorMovingObject.isAsteroid(gunColor)) {
-					RenderImage gunRenderImage = imageManager
-							.getColoredGunRenderImage(robotSnapshot
-									.getBodyColor());
+				//
+				// Gun is not rendered for any robot
+				//
+				/*
+				 * if (!ColorMovingObject.isVan(gunColor)) { RenderImage
+				 * gunRenderImage = imageManager
+				 * .getColoredGunRenderImage(robotSnapshot .getBodyColor());
+				 * 
+				 * gunRenderImage.setTransform(at); gunRenderImage.paint(g); }
+				 */
 
-					gunRenderImage.setTransform(at);
-					gunRenderImage.paint(g);
-				}
-
+				//
+				// Radar is only drawn for vans
+				//
 				if (!robotSnapshot.isDroid()) {
 					at = AffineTransform.getTranslateInstance(x, y);
 					at.rotate(robotSnapshot.getRadarHeading());
 
-					if (!ColorMovingObject.isAsteroid(gunColor)) {
+					if (AbstractHippyRobot.isVan(robotSnapshot.getName())) {
 						RenderImage radarRenderImage = imageManager
 								.getColoredRadarRenderImage(robotSnapshot
 										.getRadarColor());

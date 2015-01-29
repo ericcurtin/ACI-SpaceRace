@@ -1,0 +1,10 @@
+#Battle Properties
+#Tue Oct 14 17:43:48 BST 2014
+robocode.battle.numRounds=1
+robocode.battleField.width=1200
+robocode.battle.gunCoolingRate=0.1
+robocode.battle.initialPositions=(300,450,0),(300,150,0),(600,500,0),(600,400,0),(600,300,0),(600,200,0),(600,100,0),(900,450,0),(900,350,0),(900,250,0),(900,150,0),(1200,300,270),(20,450,90),(20,150,90)
+robocode.battle.rules.inactivityTime=1000000
+robocode.battle.selectedRobots=foobar.enemy.Stone*,foobar.enemy.Stone*,foobar.enemy.Stone*,foobar.enemy.Stone*,foobar.enemy.Stone*,foobar.enemy.Stone*,foobar.enemy.Stone*,foobar.enemy.Stone*,foobar.enemy.Stone*,foobar.enemy.Stone*,foobar.enemy.Stone*,foobar.enemy.Treasure*
+robocode.battle.hideEnemyNames=false
+robocode.battleField.height=600
