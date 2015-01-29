@@ -1,0 +1,17 @@
+package foobar.hippy.van.fuel;
+
+/**
+ * RacingPetrol is a fuel.
+ * 
+ * @author Eric Curtin (original)
+ */
+public final class RacingPetrol extends FuelDecorator {
+	public final static String name = "RacingPetrol";
+
+	public RacingPetrol(IFuel fuel, double volume) {
+		super(fuel, volume);
+		individualFuelPower = 2;
+		individualTemperatureIncrease = 5;
+		mixFuel();
+	}
+}

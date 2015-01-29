@@ -1,0 +1,10 @@
+#Battle Properties
+#Fri Nov 21 11:54:38 GMT 2014
+robocode.battle.numRounds=1
+robocode.battleField.width=1200
+robocode.battle.gunCoolingRate=0.1
+robocode.battle.initialPositions=(300,450,0),(300,150,0),(900,450,0),(900,150,180),(1200,300,270),(20,450,90),(20,150,90)
+robocode.battle.rules.inactivityTime=1000000
+robocode.battle.selectedRobots=foobar.enemy.Stone*,foobar.enemy.Stone*,foobar.enemy.Animal*,foobar.enemy.Animal*,foobar.enemy.Treasure*,foobar.hippy.van.samples.VanHelsing*,foobar.hippy.van.samples.VanHelsing*
+robocode.battle.hideEnemyNames=false
+robocode.battleField.height=600
